@@ -341,7 +341,7 @@ export default {
     Instruct
   },
   apollo: {},
-  data() {
+  setup() {
     const setupInstructions = ref({
       description: '',
       instructions: ['', '', '']
