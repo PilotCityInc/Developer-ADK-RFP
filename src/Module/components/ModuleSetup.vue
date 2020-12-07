@@ -17,12 +17,21 @@
           ></v-text-field>
         </validation-provider>
 
-        <v-text-field
-          v-model="employerWebsite"
-          label="Enter your employer website"
-          hint="www.employername.com"
-          outlined
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+)(?:.com)/
+          }"
+        >
+          <v-text-field
+            v-model="employerWebsite"
+            :error-messages="errors"
+            label="Enter your employer website"
+            hint="www.employername.com"
+            outlined
+          ></v-text-field>
+        </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
         <div class="presets__section-title">Develop Content</div>
@@ -132,37 +141,73 @@
         <v-divider class="presets__divider"></v-divider>
         <div class="presets__section-title">Provide Resources</div>
 
-        <v-text-field
-          v-model="resourceWeb"
-          outlined
-          label="Website"
-          placeholder="https://www.employername.com/"
-          prepend-inner-icon="mdi-search-web"
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+)(?:.com)/
+          }"
+        >
+          <v-text-field
+            v-model="resourceWeb"
+            :error-messages="errors"
+            outlined
+            label="Website"
+            placeholder="https://www.employername.com/"
+            prepend-inner-icon="mdi-search-web"
+          ></v-text-field>
+        </validation-provider>
 
-        <v-text-field
-          v-model="resourceInsta"
-          outlined
-          label="Instagram"
-          placeholder="https://www.instagram.com/username"
-          prepend-inner-icon="mdi-instagram"
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)?instagram.com\/(?:\w+)\//
+          }"
+        >
+          <v-text-field
+            v-model="resourceInsta"
+            :error-messages="errors"
+            outlined
+            label="Instagram"
+            placeholder="https://www.instagram.com/username"
+            prepend-inner-icon="mdi-instagram"
+          ></v-text-field>
+        </validation-provider>
 
-        <v-text-field
-          v-model="resourceLinkedIn"
-          outlined
-          label="LinkedIn"
-          placeholder="https://www.linkedin.com/username"
-          prepend-inner-icon="mdi-linkedin"
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:in)\/(?:[A-z0-9_-])/
+          }"
+        >
+          <v-text-field
+            v-model="resourceLinkedIn"
+            :error-messages="errors"
+            outlined
+            label="LinkedIn"
+            placeholder="https://www.linkedin.com/username"
+            prepend-inner-icon="mdi-linkedin"
+          ></v-text-field>
+        </validation-provider>
 
-        <v-text-field
-          v-model="resourceFacebook"
-          outlined
-          label="Facebook"
-          placeholder="https://www.facebook.com/username"
-          prepend-inner-icon="mdi-facebook"
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /^(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+          }"
+        >
+          <v-text-field
+            v-model="resourceFacebook"
+            outlined
+            :error-messages="errors"
+            label="Facebook"
+            placeholder="https://www.facebook.com/username"
+            prepend-inner-icon="mdi-facebook"
+          ></v-text-field>
+        </validation-provider>
 
         <validation-provider
           v-slot="{ errors }"
@@ -230,7 +275,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewChallenge"
+            v-model="interviewRequest"
             :error-messages="errors"
             outlined
             label="Why are you requesting projects from students?"
