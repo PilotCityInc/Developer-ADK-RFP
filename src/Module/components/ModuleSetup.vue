@@ -21,7 +21,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+)(?:.com)/
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
           }"
         >
           <v-text-field
@@ -145,7 +145,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+)(?:.com)/
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
           }"
         >
           <v-text-field
@@ -162,7 +162,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)?instagram.com\/(?:\w+)\//
+            regex: /^(?:(?:http|https):\/\/)?(?:www.)?instagram.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
           }"
         >
           <v-text-field
@@ -226,13 +226,22 @@
           ></v-text-field>
         </validation-provider>
 
-        <v-text-field
-          v-model="resourceDrive"
-          outlined
-          label="Get Started Folder"
-          placeholder="https://drive.google.com/foldername"
-          prepend-inner-icon="mdi-folder-google-drive"
-        ></v-text-field>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:drive.google.com)\/(?:drive)/
+          }"
+        >
+          <v-text-field
+            v-model="resourceDrive"
+            outlined
+            :error-messages="errors"
+            label="Get Started Folder"
+            placeholder="https://drive.google.com/foldername"
+            prepend-inner-icon="mdi-folder-google-drive"
+          ></v-text-field>
+        </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
         <div class="presets__section-title">Self-Interview</div>
