@@ -292,7 +292,7 @@
           ></v-textarea>
         </validation-provider>
 
-        <div class="module-default__scope">
+        <div class="module-default__scopes">
           <v-btn x-large depressed outlined :disabled="invalid">Save</v-btn>
         </div>
       </div>
