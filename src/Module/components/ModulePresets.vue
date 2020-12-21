@@ -1,4 +1,5 @@
 <template>
+  <ValidationObserver v-slot="{  }" slim>
   <v-container class="module-outcomes">
     <div class="module-outcomes__container">
       <!-- <v-divider class="presets__divider"></v-divider> -->
@@ -85,6 +86,7 @@
       <div><v-btn color="red" dark depressed>Delete Activity</v-btn></div>
     </div>
   </v-container>
+  </ValidationObserver>
 </template>
 
 <script lang="ts">
