@@ -301,24 +301,20 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 import { outcomes, outcomesValue, deliverables, deliverablesValue, chips, items } from './const';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModuleSetup',
-
-  setup() {
-    const setup = reactive({
+  data() {
+    return {
       outcomes,
       outcomesValue,
       deliverables,
       deliverablesValue,
       chips,
-      items
-    });
-
-    const employer = reactive({
+      items,
       employerName: '',
       employerWebsite: '',
       projectScope: '',
@@ -338,13 +334,46 @@ export default {
       interviewOpportunity: '',
       interviewChallenge: '',
       interviewRequest: ''
-    });
-    return {
-      ...toRefs(setup),
-      ...toRefs(employer)
     };
   }
-};
+
+  // setup() {
+  //   const setup = reactive({
+  //     outcomes,
+  //     outcomesValue,
+  //     deliverables,
+  //     deliverablesValue,
+  //     chips,
+  //     items
+  //   });
+
+  //   const employer = reactive({
+  //     employerName: '',
+  //     employerWebsite: '',
+  //     projectScope: '',
+  //     introVideo: '',
+  //     aboutOrg: '',
+  //     outcome: [] as string[],
+  //     deliverable: [] as string[],
+  //     projectReq: [] as string[],
+  //     resourceWeb: '',
+  //     resourceInsta: '',
+  //     resourceLinkedIn: '',
+  //     resourceFacebook: '',
+  //     resourceYouTube: '',
+  //     resourceDrive: '',
+  //     interviewProblem: '',
+  //     interviewSolution: '',
+  //     interviewOpportunity: '',
+  //     interviewChallenge: '',
+  //     interviewRequest: ''
+  //   });
+  //   return {
+  //     ...toRefs(setup),
+  //     ...toRefs(employer)
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">

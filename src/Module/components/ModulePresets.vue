@@ -91,7 +91,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, toRefs } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 import {
   group,
@@ -104,23 +104,20 @@ import {
 } from './const';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModulePresets',
   components: {
     Instruct
   },
-  apollo: {},
-  setup() {
-    const presets = reactive({
+  data() {
+    return {
       group,
       required,
       lockOrder,
       deliverable,
       notifications,
       accessibility,
-      endEarly
-    });
-    const defaultActivity = reactive({
+      endEarly,
       minutes: '',
       groupActivity: '',
       requiredActivity: '',
@@ -128,19 +125,44 @@ export default {
       deliverableActivity: '',
       notificationsActivity: '',
       accessibilityActivity: '',
-      endEarlyActivity: ''
-    });
-    const setupInstructions = ref({
-      description: '',
-      instructions: ['', '', '']
-    });
-    return {
-      ...toRefs(presets),
-      setupInstructions,
-      ...toRefs(defaultActivity)
+      endEarlyActivity: '',
+      setupInstructions: {
+        description: '',
+        instructions: ['', '', '']
+      }
     };
   }
-};
+  // setup() {
+  //   const presets = reactive({
+  //     group,
+  //     required,
+  //     lockOrder,
+  //     deliverable,
+  //     notifications,
+  //     accessibility,
+  //     endEarly
+  //   });
+  //   const defaultActivity = reactive({
+  //     minutes: '',
+  //     groupActivity: '',
+  //     requiredActivity: '',
+  //     lockOrderActivity: '',
+  //     deliverableActivity: '',
+  //     notificationsActivity: '',
+  //     accessibilityActivity: '',
+  //     endEarlyActivity: ''
+  //   });
+  //   const setupInstructions = ref({
+  //     description: '',
+  //     instructions: ['', '', '']
+  //   });
+  //   return {
+  //     ...toRefs(presets),
+  //     setupInstructions,
+  //     ...toRefs(defaultActivity)
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="module-default__container">
+  <v-container>
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -42,7 +42,7 @@
       buffer-value="100"
       stream
     />
-    <div class="module-edit__container">
+    <div>
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
       <!-- <div class="module-default__none">Design your activity here</div> -->
@@ -332,27 +332,35 @@
 </template>
 
 <script lang="ts">
-import { ref } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 
-export default {
+export default defineComponent({
   name: 'ModuleDefault',
   components: {
     Instruct
   },
-  apollo: {},
-  setup() {
-    const setupInstructions = ref({
-      description: '',
-      instructions: ['', '', '']
-    });
-    const showInstructions = ref(true);
+  data() {
     return {
-      setupInstructions,
-      showInstructions
+      setupInstructions: {
+        description: '',
+        instructions: ['', '', '']
+      },
+      showInstructions: 'true'
     };
   }
-};
+  // setup() {
+  //   const setupInstructions = ref({
+  //     description: '',
+  //     instructions: ['', '', '']
+  //   });
+  //   const showInstructions = ref(true);
+  //   return {
+  //     setupInstructions,
+  //     showInstructions
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">
