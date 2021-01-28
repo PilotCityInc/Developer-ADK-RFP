@@ -266,9 +266,9 @@ body {
 }
 </style>
 <script lang="ts">
-import { computed, reactive, ref, toRefs, defineComponent } from '@vue/composition-api';
+import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
 import '../styles/module.scss';
-// import { Collection } from 'mongodb';
+import { Collection } from 'mongodb';
 import * as Module from './components';
 
 export default defineComponent({
@@ -280,21 +280,151 @@ export default defineComponent({
     'module-presets': Module.Presets,
     'module-preview': Module.Default
   },
-  //   props: {
-  // programCollection: {
-  //   required: true,
-  //   type: Object as PropType<Collection>
-  // },
-  // programId: {
-  //   require: true,
-  //   type: String
-  // }
-  //   },
-  setup() {
-    //
-    // props.programCollection.findOne({
-    //   _id: props.programId
-    // });
+  props: {
+    programCollection: {
+      required: true,
+      type: Object as PropType<Collection>
+    },
+    programId: {
+      required: true,
+      type: String
+    },
+    employerName: {
+      required: true,
+      type: String
+    },
+    employerWebsite: {
+      required: true,
+      type: String
+    },
+    projectScope: {
+      require: true,
+      type: String
+    },
+    youtubeLink: {
+      require: true,
+      type: String
+    },
+    aboutOrganization: {
+      require: true,
+      type: String
+    },
+    outcomes: {
+      require: true,
+      type: []
+    },
+    deliverables: {
+      require: true,
+      type: []
+    },
+    projectRequirements: {
+      require: true,
+      type: []
+    },
+    resourceWebsite: {
+      require: false,
+      type: String
+    },
+    resourceInstagram: {
+      require: false,
+      type: String
+    },
+    resourceLinkedin: {
+      require: false,
+      type: String
+    },
+    resourceFacebook: {
+      require: false,
+      type: String
+    },
+    resourceYoutube: {
+      require: false,
+      type: String
+    },
+    resourceGooglefolder: {
+      require: false,
+      type: String
+    },
+    problemUrgency: {
+      require: true,
+      type: String
+    },
+    possibleUsers: {
+      require: true,
+      type: String
+    },
+    opportunites: {
+      require: true,
+      type: String
+    },
+    knownChallenges: {
+      require: true,
+      type: String
+    },
+    whyRequest: {
+      require: true,
+      type: String
+    },
+    rfpGoal: {
+      require: true,
+      type: String
+    },
+    rfpInstructions: {
+      require: true,
+      type: String
+    }
+  },
+  setup(props) {
+    
+    const programDoc = props.programCollection.findOne({
+      _id: props.programId
+    },
+    {projection: {adks:1}});
+
+    let employerName = ref("")
+    let employerWebsite = ref("")
+    let projectScope = ref("")
+    let aboutOrganization = ref("")
+    let outcomes = ref([])
+    let deliverables = ref([])
+    let projectRequirements = ref([])
+    let resourceWebsite = ref("")
+    let resourceInstagram = ref("")
+    let resourceLinkedin = ref("")
+    let resourceFacebook = ref("")
+    let resourceYoutube = ref("")
+    let resourceGooglefolder = ref("")
+    let problemUrgency = ref("")
+    let possibleUsers = ref("")
+    let opportunites = ref("")
+    let knownChallenges = ref("")
+    let whyRequest = ref("")
+    let rfpGoal = ref("")
+    let rfpInstructions = ref("")
+
+    let rfpData = programDoc.adks.find((adk) => adk.name === "rfp")
+    employerName.value = rfpData.employerName
+    employerWebsite.value = rfpData.employerWebsite
+    projectScope.value = rfpData.projectScope
+    aboutOrganization.value = rfpData.aboutOrganization
+    //Check with Eric for this
+    outcomes.value = rfpData.outcomes
+    deliverables.value = rfpData.deliverables
+    projectRequirements.value = rfpData.projectRequirements
+    resourceWebsite.value = rfpData.resourceWebsite
+    resourceInstagram.value = rfpData.resourceInstagram
+    resourceLinkedin.value = rfpData.resourceLinkedin
+    resourceFacebook.value = rfpData.resourceFacebook
+    resourceYoutube.value = rfpData.resourceYoutube
+    resourceGooglefolder.value = rfpData.resourceGooglefolder
+    problemUrgency.value = rfpData.problemUrgency
+    possibleUsers.value = rfpData.possibleUsers
+    opportunites.value = rfpData.opportunites
+    knownChallenges.value = rfpData.knownChallenges
+    whyRequest.value = rfpData.whyRequest
+    rfpGoal.value = rfpData.rfpGoal
+    rfpInstructions.value = rfpData.rfpInstructions
+    
     // ENTER ACTIVITY NAME BELOW
     const moduleName = ref('RFP');
     const page = reactive({
