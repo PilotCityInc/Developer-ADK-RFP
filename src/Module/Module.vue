@@ -102,7 +102,7 @@
         </div>
         <div class="module__page">
           <keep-alive>
-            <component :is="getComponent" />
+            <component :is="getComponent" v-model="programDoc" />
           </keep-alive>
         </div>
       </div>
@@ -270,6 +270,7 @@ import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue
 import '../styles/module.scss';
 import { Collection } from 'mongodb';
 import * as Module from './components';
+import MongoDoc from './types';
 
 export default defineComponent({
   name: 'ModuleName',
@@ -281,150 +282,29 @@ export default defineComponent({
     'module-preview': Module.Default
   },
   props: {
-    programCollection: {
+    value: {
       required: true,
-      type: Object as PropType<Collection>
-    },
-    programId: {
-      required: true,
-      type: String
-    },
-    employerName: {
-      required: true,
-      type: String
-    },
-    employerWebsite: {
-      required: true,
-      type: String
-    },
-    projectScope: {
-      require: true,
-      type: String
-    },
-    youtubeLink: {
-      require: true,
-      type: String
-    },
-    aboutOrganization: {
-      require: true,
-      type: String
-    },
-    outcomes: {
-      require: true,
-      type: []
-    },
-    deliverables: {
-      require: true,
-      type: []
-    },
-    projectRequirements: {
-      require: true,
-      type: []
-    },
-    resourceWebsite: {
-      require: false,
-      type: String
-    },
-    resourceInstagram: {
-      require: false,
-      type: String
-    },
-    resourceLinkedin: {
-      require: false,
-      type: String
-    },
-    resourceFacebook: {
-      require: false,
-      type: String
-    },
-    resourceYoutube: {
-      require: false,
-      type: String
-    },
-    resourceGooglefolder: {
-      require: false,
-      type: String
-    },
-    problemUrgency: {
-      require: true,
-      type: String
-    },
-    possibleUsers: {
-      require: true,
-      type: String
-    },
-    opportunites: {
-      require: true,
-      type: String
-    },
-    knownChallenges: {
-      require: true,
-      type: String
-    },
-    whyRequest: {
-      require: true,
-      type: String
-    },
-    rfpGoal: {
-      require: true,
-      type: String
-    },
-    rfpInstructions: {
-      require: true,
-      type: String
+      type: Object as PropType<MongoDoc>
     }
   },
-  setup(props) {
-    
-    const programDoc = props.programCollection.findOne({
-      _id: props.programId
-    },
-    {projection: {adks:1}});
+  setup(props, ctx) {
+    const programDoc = computed({
+      get: () => props.value,
+      set: newVal => {
+        ctx.emit('input', newVal);
+      }
+    });
 
-    let employerName = ref("")
-    let employerWebsite = ref("")
-    let projectScope = ref("")
-    let aboutOrganization = ref("")
-    let outcomes = ref([])
-    let deliverables = ref([])
-    let projectRequirements = ref([])
-    let resourceWebsite = ref("")
-    let resourceInstagram = ref("")
-    let resourceLinkedin = ref("")
-    let resourceFacebook = ref("")
-    let resourceYoutube = ref("")
-    let resourceGooglefolder = ref("")
-    let problemUrgency = ref("")
-    let possibleUsers = ref("")
-    let opportunites = ref("")
-    let knownChallenges = ref("")
-    let whyRequest = ref("")
-    let rfpGoal = ref("")
-    let rfpInstructions = ref("")
+    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+      return obj.name === 'rfp';
+    });
+    if (index === -1) {
+      const initRfp = {
+        name: 'rfp'
+      };
+      programDoc.value.data.adks.push(initRfp);
+    }
 
-    let rfpData = programDoc.adks.find((adk) => adk.name === "rfp")
-    employerName.value = rfpData.employerName
-    employerWebsite.value = rfpData.employerWebsite
-    projectScope.value = rfpData.projectScope
-    aboutOrganization.value = rfpData.aboutOrganization
-    //Check with Eric for this
-    outcomes.value = rfpData.outcomes
-    deliverables.value = rfpData.deliverables
-    projectRequirements.value = rfpData.projectRequirements
-    resourceWebsite.value = rfpData.resourceWebsite
-    resourceInstagram.value = rfpData.resourceInstagram
-    resourceLinkedin.value = rfpData.resourceLinkedin
-    resourceFacebook.value = rfpData.resourceFacebook
-    resourceYoutube.value = rfpData.resourceYoutube
-    resourceGooglefolder.value = rfpData.resourceGooglefolder
-    problemUrgency.value = rfpData.problemUrgency
-    possibleUsers.value = rfpData.possibleUsers
-    opportunites.value = rfpData.opportunites
-    knownChallenges.value = rfpData.knownChallenges
-    whyRequest.value = rfpData.whyRequest
-    rfpGoal.value = rfpData.rfpGoal
-    rfpInstructions.value = rfpData.rfpInstructions
-    
     // ENTER ACTIVITY NAME BELOW
     const moduleName = ref('RFP');
     const page = reactive({
@@ -488,7 +368,8 @@ export default defineComponent({
       getColor,
       ...toRefs(timelineData),
       timeline,
-      comment
+      comment,
+      programDoc
     };
   }
 });

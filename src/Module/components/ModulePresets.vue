@@ -13,7 +13,7 @@
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="groupActivity"
+            v-model="programDoc.data.adks[index].defaultActivity.groupActivity"
             :error-messages="errors"
             :items="group"
             label="What activity group does this belong to?"
@@ -23,7 +23,7 @@
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="requiredActivity"
+            v-model="programDoc.data.adks[index].defaultActivity.requiredActivity"
             :error-messages="errors"
             :items="required"
             label="Is this activity required for participants to complete?"
@@ -38,7 +38,7 @@
       ></v-select> -->
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="deliverableActivity"
+            v-model="programDoc.data.adks[index].defaultActivity.deliverableActivity"
             :error-messages="errors"
             :items="deliverable"
             label="Is this a deliverable?"
@@ -52,7 +52,7 @@
       ></v-select> -->
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="endEarlyActivity"
+            v-model="programDoc.data.adks[index].defaultActivity.endEarlyActivity"
             :error-messages="errors"
             :items="endEarly"
             label="Allow participants to end program early after completion of this activity?"
@@ -91,8 +91,9 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, toRefs } from '@vue/composition-api';
+import { reactive, ref, toRefs, computed, PropType, defineComponent } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
+import MongoDoc from '../types';
 import {
   group,
   required,
@@ -109,8 +110,51 @@ export default {
   components: {
     Instruct
   },
-  apollo: {},
-  setup() {
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    }
+  },
+
+  setup(props, ctx) {
+    const programDoc = computed({
+      get: () => props.value,
+      set: newVal => {
+        ctx.emit('input', newVal);
+      }
+    });
+    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+      return obj.name === 'rfp';
+    });
+
+    const initRfpPresets = {
+      defaultActivity: {
+        groupActivity: 'Project',
+        requiredActivity: 'Yes',
+        deliverableActivity: 'No',
+        endEarlyActivity: 'No',
+        required: false
+      }
+    };
+    programDoc.value.data.adks[index] = {
+      ...initRfpPresets,
+      ...programDoc.value.data.adks[index]
+    };
+
+    const loading = ref(false);
+    const errormsg = ref('');
+    async function save() {
+      loading.value = true;
+      try {
+        await programDoc.value.save();
+        errormsg.value = '';
+      } catch (err) {
+        errormsg.value = 'Could not save';
+      }
+      loading.value = false;
+    }
+
     const presets = reactive({
       group,
       required,
@@ -137,7 +181,12 @@ export default {
     return {
       ...toRefs(presets),
       setupInstructions,
-      ...toRefs(defaultActivity)
+      ...toRefs(defaultActivity),
+      loading,
+      save,
+      errormsg,
+      index,
+      programDoc
     };
   }
 };

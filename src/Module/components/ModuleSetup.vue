@@ -9,7 +9,7 @@
         <div class="presets__section-title">Enter Info</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="employerName"
+            v-model="programDoc.data.adks[index].rfp.employerName"
             :error-messages="errors"
             label="Employer Name"
             hint="Kaiser Permanente National Innovation"
@@ -25,7 +25,7 @@
           }"
         >
           <v-text-field
-            v-model="employerWebsite"
+            v-model="programDoc.data.adks[index].rfp.employerWebsite"
             :error-messages="errors"
             label="Enter your employer website"
             hint="www.employername.com"
@@ -41,7 +41,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="projectScope"
+            v-model="programDoc.data.adks[index].rfp.projectScope"
             :error-messages="errors"
             outlined
             label="What is the project scope?"
@@ -60,7 +60,7 @@
           }"
         >
           <v-text-field
-            v-model="introVideo"
+            v-model="programDoc.data.adks[index].rfp.introVideo"
             outlined
             :error-messages="errors"
             label="Enter Introduction Video (YouTube URL Link)"
@@ -74,7 +74,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="aboutOrg"
+            v-model="programDoc.data.adks[index].rfp.aboutOrg"
             :error-messages="errors"
             outlined
             label="About your organization"
@@ -85,7 +85,7 @@
         <div class="presets__section-title">Select Specifications</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="outcome"
+            v-model="programDoc.data.adks[index].rfp.outcome"
             :error-messages="errors"
             :items="outcomes"
             chips
@@ -100,7 +100,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="deliverable"
+            v-model="programDoc.data.adks[index].rfp.deliverable"
             :items="deliverables"
             :error-messages="errors"
             chips
@@ -112,7 +112,7 @@
         <template>
           <validation-provider v-slot="{ errors }" slim rules="required">
             <v-combobox
-              v-model="projectReq"
+              v-model="programDoc.data.adks[index].rfp.projectReq"
               outlined
               flat
               :items="items"
@@ -149,7 +149,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceWeb"
+            v-model="programDoc.data.adks[index].rfp.resourceWeb"
             :error-messages="errors"
             outlined
             label="Website"
@@ -166,7 +166,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceInsta"
+            v-model="programDoc.data.adks[index].rfp.resourceInsta"
             :error-messages="errors"
             outlined
             label="Instagram"
@@ -183,7 +183,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceLinkedIn"
+            v-model="programDoc.data.adks[index].rfp.resourceLinkedIn"
             :error-messages="errors"
             outlined
             label="LinkedIn"
@@ -200,7 +200,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceFacebook"
+            v-model="programDoc.data.adks[index].rfp.resourceFacebook"
             outlined
             :error-messages="errors"
             label="Facebook"
@@ -217,7 +217,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceYouTube"
+            v-model="programDoc.data.adks[index].rfp.resourceYouTube"
             :error-messages="errors"
             outlined
             label="YouTube"
@@ -234,7 +234,7 @@
           }"
         >
           <v-text-field
-            v-model="resourceDrive"
+            v-model="programDoc.data.adks[index].rfp.resourceDrive"
             outlined
             :error-messages="errors"
             label="Get Started Folder"
@@ -248,7 +248,7 @@
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewProblem"
+            v-model="programDoc.data.adks[index].rfp.interviewProblem"
             :error-messages="errors"
             outlined
             label="What is the urgency of this problem?"
@@ -257,7 +257,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewSolution"
+            v-model="programDoc.data.adks[index].rfp.interviewSolution"
             :error-messages="errors"
             outlined
             label="Who could be possible users of the solution created?"
@@ -266,7 +266,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewOpportunity"
+            v-model="programDoc.data.adks[index].rfp.interviewOpportunity"
             :error-messages="errors"
             outlined
             label="What are the opportunities?"
@@ -275,7 +275,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewChallenge"
+            v-model="programDoc.data.adks[index].rfp.interviewChallenge"
             :error-messages="errors"
             outlined
             label="What are the known challenges?"
@@ -284,7 +284,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="interviewRequest"
+            v-model="programDoc.data.adks[index].rfp.interviewRequest"
             :error-messages="errors"
             outlined
             label="Why are you requesting projects from students?"
@@ -301,47 +301,101 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from '@vue/composition-api';
-import { outcomes, outcomesValue, deliverables, deliverablesValue, chips, items } from './const';
+import { reactive, toRefs, PropType, computed, ref } from '@vue/composition-api';
+import { deliverablesValue, chips, items } from './const';
+import MongoDoc from '../types';
 // import gql from 'graphql-tag';
 
 export default {
   name: 'ModuleSetup',
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    }
+  },
 
-  setup() {
+  setup(props, ctx) {
+    const programDoc = computed({
+      get: () => props.value,
+      set: newVal => {
+        ctx.emit('input', newVal);
+      }
+    });
+
+    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+      return obj.name === 'rfp';
+    });
+    const initRfpSetup = {
+      rfp: {
+        employerName: '',
+        employerWebsite: '',
+        projectScope: '',
+        introVideo: '',
+        aboutOrg: '',
+        outcome: '',
+        deliverable: '',
+        projectReq: '',
+        resourceWeb: '',
+        resourceInsta: '',
+        resourceLinkedIn: '',
+        resourceFacebook: '',
+        resourceYouTube: '',
+        resourceDrive: '',
+        interviewProblem: '',
+        interviewSolution: '',
+        interviewOpportunity: '',
+        interviewChallenge: '',
+        interviewReqeust: '',
+        required: false
+      }
+    };
+
+    programDoc.data.adks[index] = {
+      ...initRfpSetup,
+      ...programDoc.value.data.adks[index]
+    };
+
+    const loading = ref(false);
+    const errormsg = ref('');
+    async function save() {
+      loading.value = true;
+      try {
+        await programDoc.value.save();
+        errormsg.value = '';
+      } catch (err) {
+        errormsg.value = 'Could not save';
+      }
+      loading.value = false;
+    }
+
+    function populate() {
+      programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
+    }
     const setup = reactive({
-      outcomes,
-      outcomesValue,
-      deliverables,
-      deliverablesValue,
+      outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
+      // outcomesValue,
+      deliverables: [
+        'Business Model Canvas',
+        'One Sentence Pitch',
+        'Elevator Pitch',
+        'Design & Prototype Log',
+        'Prototype Demo',
+        'Presentation Deck'
+      ],
+      // deliverablesValue,
       chips,
       items
     });
 
-    const employer = reactive({
-      employerName: '',
-      employerWebsite: '',
-      projectScope: '',
-      introVideo: '',
-      aboutOrg: '',
-      outcome: [] as string[],
-      deliverable: [] as string[],
-      projectReq: [] as string[],
-      resourceWeb: '',
-      resourceInsta: '',
-      resourceLinkedIn: '',
-      resourceFacebook: '',
-      resourceYouTube: '',
-      resourceDrive: '',
-      interviewProblem: '',
-      interviewSolution: '',
-      interviewOpportunity: '',
-      interviewChallenge: '',
-      interviewRequest: ''
-    });
     return {
       ...toRefs(setup),
-      ...toRefs(employer)
+      populate,
+      errormsg,
+      index,
+      save,
+      loading,
+      programDoc
     };
   }
 };
