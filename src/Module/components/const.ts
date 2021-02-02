@@ -1,16 +1,15 @@
-export const outcomes = ['Build portfolio project', 'Qualify for internship to execute on project'];
 export const outcomesValue = [
   'Build portfolio project',
   'Qualify for internship to execute on project'
 ];
-export const deliverables = [
-  'Business Model Canvas',
-  'One Sentence Pitch',
-  'Elevator Pitch',
-  'Design & Prototype Log',
-  'Prototype Demo',
-  'Presentation Deck'
-];
+// export const deliverables = [
+//   'Business Model Canvas',
+//   'One Sentence Pitch',
+//   'Elevator Pitch',
+//   'Design & Prototype Log',
+//   'Prototype Demo',
+//   'Presentation Deck'
+// ];
 export const deliverablesValue = [
   'Business Model Canvas',
   'One Sentence Pitch',
