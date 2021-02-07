@@ -176,6 +176,16 @@ export default defineComponent({
       accessibilityActivity: '',
       endEarlyActivity: ''
     });
+    const defaultActivity = reactive({
+      minutes: '',
+      groupActivity: '',
+      requiredActivity: '',
+      lockOrderActivity: '',
+      deliverableActivity: '',
+      notificationsActivity: '',
+      accessibilityActivity: '',
+      endEarlyActivity: ''
+    });
     const setupInstructions = ref({
       description: '',
       instructions: ['', '', '']
@@ -200,20 +210,6 @@ export default defineComponent({
   //     notifications,
   //     accessibility,
   //     endEarly
-  //   });
-  //   const defaultActivity = reactive({
-  //     minutes: '',
-  //     groupActivity: '',
-  //     requiredActivity: '',
-  //     lockOrderActivity: '',
-  //     deliverableActivity: '',
-  //     notificationsActivity: '',
-  //     accessibilityActivity: '',
-  //     endEarlyActivity: ''
-  //   });
-  //   const setupInstructions = ref({
-  //     description: '',
-  //     instructions: ['', '', '']
   //   });
   //   return {
   //     ...toRefs(presets),

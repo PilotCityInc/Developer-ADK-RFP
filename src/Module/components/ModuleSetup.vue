@@ -306,7 +306,7 @@ import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
 
-export default defineComponent({
+export default {
   name: 'ModuleSetup',
   props: {
     value: {
@@ -383,7 +383,7 @@ export default defineComponent({
         'Prototype Demo',
         'Presentation Deck'
       ],
-      // deliverablesValue,
+      deliverablesValue,
       chips,
       items
     });
@@ -435,7 +435,7 @@ export default defineComponent({
   //     ...toRefs(employer)
   //   };
   // }
-});
+};
 </script>
 
 <style lang="scss">
