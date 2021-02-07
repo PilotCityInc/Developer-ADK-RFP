@@ -301,12 +301,12 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, PropType, computed, ref } from '@vue/composition-api';
+import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModuleSetup',
   props: {
     value: {
@@ -435,7 +435,7 @@ export default {
   //     ...toRefs(employer)
   //   };
   // }
-};
+});
 </script>
 
 <style lang="scss">
