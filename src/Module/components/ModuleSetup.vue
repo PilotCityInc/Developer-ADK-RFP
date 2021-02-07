@@ -6,13 +6,13 @@
         <!-- <div class="module-setup__none">No setup necessary</div> -->
         <!-- ENTER CONTENT HERE -->
         <!-- <v-divider class="presets__divider"></v-divider> -->
-        <div class="presets__section-title">Enter Info</div>
+        <div class="presets__section-title">Employer</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.employerName"
             :error-messages="errors"
             label="Employer Name"
-            hint="Kaiser Permanente National Innovation"
+            hint="Enter your organization name"
             outlined
           ></v-text-field>
         </validation-provider>
@@ -27,17 +27,17 @@
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.employerWebsite"
             :error-messages="errors"
-            label="Enter your employer website"
-            hint="www.employername.com"
+            label="Employer Website"
+            hint="Enter your website address"
             outlined
           ></v-text-field>
         </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Develop Content</div>
+        <div class="presets__section-title">Define Scope</div>
         <div class="module-setup__buildscope">
           <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
-          <v-btn depressed outlined x-small>Build Scope Now</v-btn>
+          <!-- <v-btn depressed outlined x-small>Build Scope Now</v-btn> -->
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
@@ -45,14 +45,14 @@
             :error-messages="errors"
             outlined
             label="What is the project scope?"
-            placeholder="In a tweet or less, describe your scope of the project mission"
+            placeholder="In a tweet or less, define your project scope for students"
           ></v-textarea>
         </validation-provider>
         <div class="module-setup__buildscope">
           <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
-          <v-btn depressed outlined x-small>Make Video Now</v-btn>
+          <!-- <v-btn depressed outlined x-small>Make Video Now</v-btn> -->
         </div>
-        <validation-provider
+        <!-- <validation-provider
           v-slot="{ errors }"
           slim
           :rules="{
@@ -67,10 +67,10 @@
             placeholder="https://www.youtube.com/linkextension"
             prepend-inner-icon="mdi-youtube"
           ></v-text-field>
-        </validation-provider>
+        </validation-provider> -->
         <div class="module-setup__buildscope">
           <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
-          <v-btn depressed outlined x-small>Get From LinkedIn</v-btn>
+          <!-- <v-btn depressed outlined x-small>Get From LinkedIn</v-btn> -->
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
@@ -139,9 +139,9 @@
         </template>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Provide Resources</div>
+        <div class="presets__section-title">Links</div>
 
-        <validation-provider
+        <!-- <validation-provider
           v-slot="{ errors }"
           slim
           :rules="{
@@ -156,7 +156,7 @@
             placeholder="https://www.employername.com/"
             prepend-inner-icon="mdi-search-web"
           ></v-text-field>
-        </validation-provider>
+        </validation-provider> -->
 
         <validation-provider
           v-slot="{ errors }"
@@ -244,7 +244,7 @@
         </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Self-Interview</div>
+        <div class="presets__section-title">Key Questions</div>
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
