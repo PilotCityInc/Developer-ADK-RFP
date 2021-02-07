@@ -14,6 +14,7 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
             v-model="programDoc.data.adks[index].defaultActivity.groupActivity"
+            disabled
             :error-messages="errors"
             :items="group"
             label="What activity group does this belong to?"
@@ -24,6 +25,7 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
             v-model="programDoc.data.adks[index].defaultActivity.requiredActivity"
+            disabled
             :error-messages="errors"
             :items="required"
             label="Is this activity required for participants to complete?"
@@ -39,6 +41,7 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
             v-model="programDoc.data.adks[index].defaultActivity.deliverableActivity"
+            disabled
             :error-messages="errors"
             :items="deliverable"
             label="Is this a deliverable?"
@@ -53,6 +56,7 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
             v-model="programDoc.data.adks[index].defaultActivity.endEarlyActivity"
+            disabled
             :error-messages="errors"
             :items="endEarly"
             label="Allow participants to end program early after completion of this activity?"

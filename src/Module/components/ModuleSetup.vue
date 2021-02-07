@@ -351,7 +351,7 @@ export default {
       }
     };
 
-    programDoc.data.adks[index] = {
+    programDoc.value.data.adks[index] = {
       ...initRfpSetup,
       ...programDoc.value.data.adks[index]
     };
