@@ -22,7 +22,7 @@ export const chips = ['Must use employer product'];
 export const items = [
   'Must use employer product',
   'Must use employer service',
-  'Must use employer process'
+  'Must use employer recommended process'
 ];
 
 const group = ['Setup', 'Project', 'Screening', 'Internship'];

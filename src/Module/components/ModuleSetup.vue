@@ -6,7 +6,7 @@
         <!-- <div class="module-setup__none">No setup necessary</div> -->
         <!-- ENTER CONTENT HERE -->
         <!-- <v-divider class="presets__divider"></v-divider> -->
-        <div class="presets__section-title">Employer</div>
+        <div class="presets__section-title">Define Scope</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.employerName"
@@ -16,14 +16,11 @@
             outlined
           ></v-text-field>
         </validation-provider>
-
-        <validation-provider
-          v-slot="{ errors }"
-          slim
-          :rules="{
+        <!-- :rules="{
             regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
-          }"
-        >
+          }" -->
+
+        <!-- <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.employerWebsite"
             :error-messages="errors"
@@ -31,10 +28,10 @@
             hint="Enter your website address"
             outlined
           ></v-text-field>
-        </validation-provider>
+        </validation-provider> -->
 
-        <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Define Scope</div>
+        <!-- <v-divider class="presets__divider"></v-divider> -->
+        <!-- <div class="presets__section-title">Define Scope</div> -->
         <div class="module-setup__buildscope">
           <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
           <!-- <v-btn depressed outlined x-small>Build Scope Now</v-btn> -->
@@ -96,7 +93,7 @@
         </validation-provider>
         <div class="module-setup__buildscope">
           <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
-          <v-btn depressed outlined disabled x-small>Connected with activities</v-btn>
+          <!-- <v-btn depressed outlined disabled x-small>Connected with activities</v-btn> -->
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
@@ -110,7 +107,7 @@
           ></v-select>
         </validation-provider>
         <template>
-          <validation-provider v-slot="{ errors }" slim rules="required">
+          <validation-provider v-slot="{ errors }" slim>
             <v-combobox
               v-model="programDoc.data.adks[index].rfp.projectReq"
               outlined
@@ -139,9 +136,9 @@
         </template>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Links</div>
+        <div class="presets__section-title">Provide Links</div>
 
-        <!-- <validation-provider
+        <validation-provider
           v-slot="{ errors }"
           slim
           :rules="{
@@ -156,7 +153,7 @@
             placeholder="https://www.employername.com/"
             prepend-inner-icon="mdi-search-web"
           ></v-text-field>
-        </validation-provider> -->
+        </validation-provider>
 
         <validation-provider
           v-slot="{ errors }"
@@ -247,49 +244,49 @@
         <div class="presets__section-title">Key Questions</div>
 
         <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-textarea
+          <v-text-field
             v-model="programDoc.data.adks[index].rfp.interviewProblem"
             :error-messages="errors"
             outlined
             label="What is the urgency of this problem?"
             placeholder="In a tweet or less, answer the question for student participants."
-          ></v-textarea>
+          ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-textarea
+          <v-text-field
             v-model="programDoc.data.adks[index].rfp.interviewSolution"
             :error-messages="errors"
             outlined
             label="Who could be possible users of the solution created?"
             placeholder="In a tweet or less, answer the question for student participants."
-          ></v-textarea>
+          ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-textarea
+          <v-text-field
             v-model="programDoc.data.adks[index].rfp.interviewOpportunity"
             :error-messages="errors"
             outlined
             label="What are the opportunities?"
             placeholder="In a tweet or less, answer the question for student participants."
-          ></v-textarea>
+          ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-textarea
+          <v-text-field
             v-model="programDoc.data.adks[index].rfp.interviewChallenge"
             :error-messages="errors"
             outlined
             label="What are the known challenges?"
             placeholder="In a tweet or less, answer the question for student participants."
-          ></v-textarea>
+          ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-textarea
+          <v-text-field
             v-model="programDoc.data.adks[index].rfp.interviewRequest"
             :error-messages="errors"
             outlined
             label="Why are you requesting projects from students?"
             placeholder="In a tweet or less, answer the question for student participants."
-          ></v-textarea>
+          ></v-text-field>
         </validation-provider>
 
         <div class="module-default__scope">
@@ -333,8 +330,8 @@ export default defineComponent({
         projectScope: '',
         introVideo: '',
         aboutOrg: '',
-        outcome: '',
-        deliverable: '',
+        outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
+        deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
         projectReq: '',
         resourceWeb: '',
         resourceInsta: '',
@@ -375,14 +372,7 @@ export default defineComponent({
     const setup = reactive({
       outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
       // outcomesValue,
-      deliverables: [
-        'Business Model Canvas',
-        'One Sentence Pitch',
-        'Elevator Pitch',
-        'Design & Prototype Log',
-        'Prototype Demo',
-        'Presentation Deck'
-      ],
+      deliverables: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
       deliverablesValue,
       chips,
       items

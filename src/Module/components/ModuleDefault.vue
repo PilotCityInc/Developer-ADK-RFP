@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="module-default__container">
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -57,7 +57,7 @@
       </div>
       <br />
       <br />
-      <div class="module-default__youtube"></div>
+      <!-- <div class="module-default__youtube"></div> -->
       <br />
       <br />
       <div class="module-default__faq">
@@ -76,7 +76,7 @@
                 </v-avatar>
               </template>
               <v-card outlined color="grey lighten-3" class="elevation-0">
-                <v-card-text
+                <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer-dark">
                     Hi, my name is
                     <span class="module-default__faq-answer-dark-highlight">Brittany Domnie</span>
@@ -103,7 +103,7 @@
                 >
               </template>
               <v-card color="green" dark outlined class="elevation-0">
-                <v-card-text
+                <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     The pandemic has exacerbated the healthcare system as it goes into overdrive.
                     People are uncertain and concerned about their current health status.
@@ -364,6 +364,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.v-timeline-item__divider {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .module-default {
   &__none {
     border-radius: 5px;

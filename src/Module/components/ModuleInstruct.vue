@@ -1,5 +1,5 @@
 <template>
-  <ValidationObserver v-slot="{ invalid }" slim>
+  <ValidationObserver v-slot="{}" slim>
     <!--  TODO: make the inputs into actual components -->
     <v-container class="module-instruct">
       <div class="module-instruct__container">
@@ -85,12 +85,12 @@ export default defineComponent({
     //   }
     // });
     const boilerInstructions = ref([
-      'Click resource link',
-      'Review, complete or understand resource contents',
-      'Mark completed until all finished'
+      'Review information',
+      'Click on provided resources',
+      'Finish when complete'
     ]);
     const goal = ref([
-      'To research employer-provided resources, links, examples, possibilities & direction for projects'
+      'To review the employer project scope, mission, specifications and initial resources'
     ]);
     // function populate() {
     //   boilerInstructions.value.push('');

@@ -4,7 +4,7 @@ networks:
     driver: bridge
 services:
   rfp: #in container-based development
-    image: pilotcity/boiler
+    build: . #enable this when modifyingh dependencies
     container_name: rfp
     # build: 
     #   context: .
