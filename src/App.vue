@@ -1,5 +1,7 @@
 <template>
-  <v-app> <Module v-model="programDocStub" /> </v-app>
+  <v-app>
+    <Module v-model="programDocStub" />
+  </v-app>
 </template>
 
 <script lang="ts">
