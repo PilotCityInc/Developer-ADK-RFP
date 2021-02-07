@@ -2,7 +2,7 @@
   <!--  TODO: make the inputs into actual components -->
   <v-container class="module">
     <div class="module__navbar">
-      <v-btn
+      <!-- <v-btn
         v-if="currentPage == 'preview'"
         dark
         class="module__navbar-button"
@@ -11,18 +11,16 @@
         color="grey lighten-1"
         rounded
         >00:00:00</v-btn
-      >
+      > -->
       <v-btn
         v-if="currentPage != 'preview'"
         class="module__navbar-button"
         outlined
         x-small
         depressed
-        color="grey lighten-1"
         @click="currentPage = 'preview'"
         >Preview</v-btn
       >
-
       <v-btn
         v-if="currentPage == 'preview'"
         class="module__navbar-button"
@@ -34,7 +32,9 @@
         >Exit Preview</v-btn
       >
 
-      <v-menu v-if="currentPage != 'preview'" offset-y left>
+      <!-- COMMENT OUT UNTIL VERSION WHERE CUSTOMIZABILITY IS ALLOWED -->
+
+      <!-- <v-menu v-if="currentPage != 'preview'" offset-y left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" small icon class="module__navbar-button" v-on="on">
             <v-icon color="grey lighten-1">mdi-cog</v-icon></v-btn
@@ -61,17 +61,17 @@
             swatches-max-height="100"
           ></v-color-picker>
         </v-card>
-      </v-menu>
+      </v-menu> -->
     </div>
     <div class="module__container" :style="{ 'border-color': getColor }">
       <div class="module__title">
         <div class="module__image rounded-circle">
-          <v-icon light x-large :color="selectedColor">mdi-newspaper-variant-outline</v-icon>
+          <v-icon light x-large :color="selectedColor">mdi-book-open</v-icon>
         </div>
         <div class="module__header text-md-h5 text-sm-subtitle-1 d-flex align-center">
-          <input :value="moduleName" type="text" class="module__header-text" />
+          <input disabled :value="moduleName" type="text" class="module__header-text" />
           <v-chip-group class="module__header-chips"
-            ><v-chip disabled dark small>Preset Tags</v-chip>
+            ><v-chip color="white" disabled dark x-small>Preset Tags</v-chip>
           </v-chip-group>
         </div>
       </div>
@@ -108,8 +108,7 @@
       </div>
     </div>
     <!-- TIMELINE START -->
-
-    <template>
+    <!-- <template>
       <v-container v-if="currentPage == 'preview'" style="max-width: 675px">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -200,31 +199,23 @@
                 <v-col cols="7" v-text="event.text"></v-col>
                 <v-col class="text-right" cols="3" v-text="event.time"></v-col>
                 <v-col class="text-right" cols="2">
-                  <!-- POSTER, STUDENT PARTICIPANT OR ORGANIZER CAN DELETE POSTS -->
                   <v-btn small class="module__trash" icon
                     ><v-icon small color="grey" class="module__trash"
                       >mdi-trash-can-outline</v-icon
                     ></v-btn
                   >
-                  <!-- ANYONE CAN FLAG COMMENTS -->
                   <v-btn small class="module__trash" icon
                     ><v-icon small color="grey" class="module__trash">mdi-flag</v-icon></v-btn
                   ></v-col
                 >
               </v-row>
-
               <v-btn class="" icon><v-icon color="grey lighten-2">mdi-thumb-up</v-icon></v-btn>
-
               <v-btn class="" icon><v-icon color="grey lighten-2">mdi-thumb-down</v-icon></v-btn>
-              <!--
-              <v-btn x-small outlined depressed class="mx-0">Reply</v-btn>
-
-              <v-btn small class="" icon><v-icon color="grey lighten-2">mdi-flag</v-icon></v-btn> -->
             </v-timeline-item>
           </v-slide-x-transition>
         </v-timeline>
       </v-container>
-    </template>
+    </template> -->
     <!-- TIMELINE END -->
   </v-container>
 </template>
@@ -236,23 +227,19 @@ body {
   width: 100%;
   height: 100%;
 }
-
 .v-timeline-item__divider {
   align-items: start !important;
 }
-
 .module {
   &__trash {
     // justify-content: start;
     align-items: start;
     // align-content: start;
   }
-
   &__header-chips {
     padding-bottom: 15px;
   }
 }
-
 .v-btn__content.module__chat-menu-button {
   justify-content: left;
   width: 100%;
@@ -274,7 +261,6 @@ import MongoDoc from './types';
 
 export default defineComponent({
   name: 'ModuleName',
-
   components: {
     'module-monitor': Module.Monitor,
     'module-setup': Module.Setup,
@@ -306,9 +292,9 @@ export default defineComponent({
     }
 
     // ENTER ACTIVITY NAME BELOW
-    const moduleName = ref('RFP');
+    const moduleName = ref('Request for Projects');
     const page = reactive({
-      subpages: ['Setup', 'Presets', 'Monitor'],
+      subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
     });
     const getComponent = computed(() => {

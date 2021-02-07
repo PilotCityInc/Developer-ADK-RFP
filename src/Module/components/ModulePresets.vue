@@ -88,7 +88,7 @@
         <!-- Delete break when the two delete buttons above and below have been integrated as one solution -->
         <br />
         <!-- If activity is optional, show button below -->
-        <div><v-btn color="red" dark depressed>Delete Activity</v-btn></div>
+        <div><v-btn color="red" disabled depressed>Delete Activity</v-btn></div>
       </div>
     </v-container>
   </ValidationObserver>
@@ -109,7 +109,7 @@ import {
 } from './const';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModulePresets',
   components: {
     Instruct
@@ -166,7 +166,15 @@ export default {
       deliverable,
       notifications,
       accessibility,
-      endEarly
+      endEarly,
+      minutes: '',
+      groupActivity: '',
+      requiredActivity: '',
+      lockOrderActivity: '',
+      deliverableActivity: '',
+      notificationsActivity: '',
+      accessibilityActivity: '',
+      endEarlyActivity: ''
     });
     const defaultActivity = reactive({
       minutes: '',
@@ -193,7 +201,23 @@ export default {
       programDoc
     };
   }
-};
+  // setup() {
+  //   const presets = reactive({
+  //     group,
+  //     required,
+  //     lockOrder,
+  //     deliverable,
+  //     notifications,
+  //     accessibility,
+  //     endEarly
+  //   });
+  //   return {
+  //     ...toRefs(presets),
+  //     setupInstructions,
+  //     ...toRefs(defaultActivity)
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">

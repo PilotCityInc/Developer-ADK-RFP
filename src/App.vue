@@ -1,11 +1,13 @@
 <template>
-  <v-app> <Module v-model="programDocStub" /> </v-app>
+  <v-app>
+    <Module v-model="programDocStub" />
+  </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { defineComponent, ref } from '@vue/composition-api';
 // import ApolloExample from './components/ApolloExample.vue';
+import { defineComponent, ref } from '@vue/composition-api';
 import Module from './Module/Module.vue';
 import MongoDoc from './Module/types';
 

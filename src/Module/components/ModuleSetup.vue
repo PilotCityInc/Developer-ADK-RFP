@@ -301,12 +301,12 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, PropType, computed, ref } from '@vue/composition-api';
+import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModuleSetup',
   props: {
     value: {
@@ -383,7 +383,7 @@ export default {
         'Prototype Demo',
         'Presentation Deck'
       ],
-      // deliverablesValue,
+      deliverablesValue,
       chips,
       items
     });
@@ -398,7 +398,44 @@ export default {
       programDoc
     };
   }
-};
+
+  // setup() {
+  //   const setup = reactive({
+  //     outcomes,
+  //     outcomesValue,
+  //     deliverables,
+  //     deliverablesValue,
+  //     chips,
+  //     items
+  //   });
+
+  //   const employer = reactive({
+  //     employerName: '',
+  //     employerWebsite: '',
+  //     projectScope: '',
+  //     introVideo: '',
+  //     aboutOrg: '',
+  //     outcome: [] as string[],
+  //     deliverable: [] as string[],
+  //     projectReq: [] as string[],
+  //     resourceWeb: '',
+  //     resourceInsta: '',
+  //     resourceLinkedIn: '',
+  //     resourceFacebook: '',
+  //     resourceYouTube: '',
+  //     resourceDrive: '',
+  //     interviewProblem: '',
+  //     interviewSolution: '',
+  //     interviewOpportunity: '',
+  //     interviewChallenge: '',
+  //     interviewRequest: ''
+  //   });
+  //   return {
+  //     ...toRefs(setup),
+  //     ...toRefs(employer)
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">
