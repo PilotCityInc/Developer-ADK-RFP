@@ -48,12 +48,11 @@
       <!-- <div class="module-default__none">Design your activity here</div> -->
       <div class="module-default__scope">
         <v-btn dense color="blue" small rounded outlined depressed
-          >Kaiser Permanente National Innovation
+          >{{ programDoc.data.adks[index].rfp.employerName }}
         </v-btn>
         <br />
         <br />
-        Use human-centered design to develop health-tech solutions to fight childhood obesity,
-        enable telemedicine, and create a smart and health community.
+        {{ programDoc.data.adks[index].rfp.projectScope }}
       </div>
       <br />
       <br />
@@ -81,8 +80,9 @@
                     Hi, my name is
                     <span class="module-default__faq-answer-dark-highlight">Brittany Domnie</span>
                     with
-                    <span class="module-default__faq-answer-dark-highlight"
-                      >Kaiser Permanente National Innovation</span
+                    <span class="module-default__faq-answer-dark-highlight">{{
+                      programDoc.data.adks[index].rfp.employerName
+                    }}</span
                     >. Below are my answers to some key questions.
                   </div></v-card-text
                 >
@@ -105,8 +105,7 @@
               <v-card color="green" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
-                    The pandemic has exacerbated the healthcare system as it goes into overdrive.
-                    People are uncertain and concerned about their current health status.
+                    {{ programDoc.data.adks[index].rfp.interviewProblem }}
                   </div></v-card-text
                 >
               </v-card>
@@ -128,8 +127,7 @@
               <v-card color="red" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
-                    Frontline workers in healthcare, doctors, and researchers would be the optimal
-                    users of the solution for you bright students to embark on developing.
+                    {{ programDoc.data.adks[index].rfp.interviewSolution }}
                   </div></v-card-text
                 >
               </v-card>
@@ -149,10 +147,7 @@
               <v-card color="pink" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
-                    We are excited about the idea of bridging the digital divide, enabling
-                    telemedicine practices which would greatly enhance the accessibility low-income
-                    families have with our healthcare system with the factor of transport
-                    eliminated.
+                    {{ programDoc.data.adks[index].rfp.interviewOpportunity }}
                   </div></v-card-text
                 >
               </v-card>
@@ -172,8 +167,7 @@
               <v-card color="purple" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
-                    Access to technology seems to be the issue as well as data and privacy
-                    challenges between consumer and provider of healthcare.
+                    {{ programDoc.data.adks[index].rfp.interviewChallenge }}
                   </div></v-card-text
                 >
               </v-card>
@@ -195,9 +189,7 @@
               <v-card color="green" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
-                    We have a grant that asks for civic engagement with students to co-generate new
-                    ideas for our proposed solutions. We also are interested in building a pipeline
-                    of opportunities to work in our local industry consortium we lead.
+                    {{ programDoc.data.adks[index].rfp.interviewRequest }}
                   </div></v-card-text
                 >
               </v-card>
@@ -218,56 +210,43 @@
           <v-subheader>Outcomes</v-subheader>
           <v-list two-line subheader>
             <v-list-item>
-              <v-chip-group column>
-                <v-chip dark>Build portfolio project</v-chip>
-                <v-chip dark>Qualify for internship to execute on project</v-chip></v-chip-group
+              <div
+                v-for="(outcome, itemIndex) in programDoc.data.adks[index].rfp.outcome"
+                :key="itemIndex"
               >
+                <v-chip-group column>
+                  <v-chip dark> {{ outcome }} </v-chip>
+                </v-chip-group>
+              </div>
             </v-list-item>
           </v-list>
           <!-- <v-divider></v-divider> -->
           <v-subheader>Deliverables</v-subheader>
           <v-list two-line subheader>
             <v-list-item>
-              <v-chip-group column>
-                <v-chip dark>Business Model Canvas</v-chip>
-                <v-chip dark>One Sentence Pitch</v-chip>
-                <v-chip dark>Elevator Pitch</v-chip>
-                <v-chip dark>Design & Prototype Log</v-chip>
-                <v-chip dark>Prototype Demo</v-chip>
-                <v-chip dark>Presentation Deck</v-chip>
-              </v-chip-group>
+              <div
+                v-for="(deliverable, itemIndex) in programDoc.data.adks[index].rfp.deliverable"
+                :key="itemIndex"
+              >
+                <v-chip-group column>
+                  <v-chip dark>{{ deliverable }}</v-chip>
+                </v-chip-group>
+              </div>
             </v-list-item>
           </v-list>
           <!-- <v-divider></v-divider> -->
           <v-subheader>Requirements</v-subheader>
           <v-list two-line subheader>
-            <v-list-item>
+            <v-list-item
+              v-for="(requirements, itemIndex) in programDoc.data.adks[index].rfp.projectReq"
+              :key="itemIndex"
+            >
               <template v-slot:default="{ active }">
                 <v-list-item-action>
                   <v-checkbox :input-value="active" color="primary"></v-checkbox>
                 </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title>Use human-centered design</v-list-item-title>
-                </v-list-item-content>
-              </template>
-            </v-list-item>
-            <v-list-item>
-              <template v-slot:default="{ active }">
-                <v-list-item-action>
-                  <v-checkbox :input-value="active" color="primary"></v-checkbox>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title>Solve childhood obesity</v-list-item-title>
-                </v-list-item-content>
-              </template>
-            </v-list-item>
-            <v-list-item>
-              <template v-slot:default="{ active }">
-                <v-list-item-action>
-                  <v-checkbox :input-value="active" color="primary"></v-checkbox>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title>Use technology</v-list-item-title>
+                  <v-list-item-title>{{ requirements }}</v-list-item-title>
                 </v-list-item-content>
               </template>
             </v-list-item>
@@ -277,12 +256,54 @@
           <v-list two-line subheader>
             <v-list-item>
               <v-btn-group>
-                <v-btn class="ma-1" depressed small outlined>Get Started Folder</v-btn>
-                <v-btn class="ma-1" depressed small outlined>Website</v-btn>
-                <v-btn class="ma-1" depressed small outlined>Instagram</v-btn>
-                <v-btn class="ma-1" depressed small outlined>LinkedIn</v-btn>
-                <v-btn class="ma-1" depressed small outlined>Facebook</v-btn>
-                <v-btn class="ma-1" depressed small outlined>YouTube</v-btn>
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceDrive"
+                  >Get Started Folder</v-btn
+                >
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceWeb"
+                  >Website</v-btn
+                >
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceInsta"
+                  >Instagram</v-btn
+                >
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceLinkedIn"
+                  >LinkedIn</v-btn
+                >
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceFacebook"
+                  >Facebook</v-btn
+                >
+                <v-btn
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  :href="programDoc.data.adks[index].rfp.resourceYouTube"
+                  >YouTube</v-btn
+                >
                 <!-- <v-btn class="ma-1" depressed small outlined>Articles</v-btn>
                 <v-btn class="ma-1" depressed small outlined>Product Specifications</v-btn>
                 <v-btn class="ma-1" depressed small outlined>Reports</v-btn> -->
@@ -291,17 +312,7 @@
           </v-list>
           <v-divider></v-divider>
           <v-subheader>About</v-subheader>
-          <v-card-text
-            >Kaiser Permanente (/ˈkaɪzər pɜːrməˈnɛnteɪ/; KP) is an American integrated managed care
-            consortium, based in Oakland, California, United States, founded in 1945 by
-            industrialist Henry J. Kaiser and physician Sidney Garfield. Kaiser Permanente is made
-            up of three distinct but interdependent groups of entities: the Kaiser Foundation Health
-            Plan, Inc. (KFHP) and its regional operating subsidiaries; Kaiser Foundation Hospitals;
-            and the regional Permanente Medical Groups. As of 2017, Kaiser Permanente operates in
-            eight states (Hawaii, Washington, Oregon, California, Colorado, Maryland, Virginia,
-            Georgia) and the District of Columbia, and is the largest managed care organization in
-            the United States.</v-card-text
-          >
+          <v-card-text>{{ programDoc.data.adks[index].rfp.aboutOrg }}</v-card-text>
         </v-card>
       </template>
       <br />
@@ -332,20 +343,79 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, PropType, computed, reactive } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
+import MongoDoc from '../types';
 
 export default defineComponent({
   name: 'ModuleDefault',
-  components: {
-    Instruct
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    }
   },
+
+  setup(props, ctx) {
+    const programDoc = computed({
+      get: () => props.value,
+      set: newVal => {
+        ctx.emit('input', newVal);
+      }
+    });
+
+    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+      return obj.name === 'rfp';
+    });
+
+    const initRfpSetup = {
+      rfp: {
+        employerName: '',
+        employerWebsite: '',
+        projectScope: '',
+        introVideo: '',
+        aboutOrg: '',
+        outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
+        deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
+        projectReq: '',
+        resourceWeb: '',
+        resourceInsta: '',
+        resourceLinkedIn: '',
+        resourceFacebook: '',
+        resourceYouTube: '',
+        resourceDrive: '',
+        interviewProblem: '',
+        interviewSolution: '',
+        interviewOpportunity: '',
+        interviewChallenge: '',
+        interviewReqeust: '',
+        required: false
+      }
+    };
+
+    programDoc.value.data.adks[index] = {
+      ...initRfpSetup,
+      ...programDoc.value.data.adks[index]
+    };
+
+    function populate() {
+      programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
+    }
+
+    // const setup = reactive({
+
+    // });
+
+    return {
+      populate,
+      index,
+      programDoc
+      // setup
+    };
+  },
+
   data() {
     return {
-      setupInstructions: {
-        description: '',
-        instructions: ['', '', '']
-      },
       showInstructions: 'true'
     };
   }

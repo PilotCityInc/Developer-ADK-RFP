@@ -290,7 +290,7 @@
         </validation-provider>
 
         <div class="module-default__scope">
-          <v-btn x-large depressed outlined :disabled="invalid">Save</v-btn>
+          <v-btn x-large depressed outlined :disabled="invalid" @click="save">Save</v-btn>
         </div>
       </div>
     </v-container>
