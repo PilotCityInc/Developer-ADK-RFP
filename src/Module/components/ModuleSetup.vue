@@ -264,6 +264,7 @@
             v-model="programDoc.data.adks[index].rfp.interviewProblem"
             :error-messages="errors"
             outlined
+            counter="280"
             label="What is the urgency of this problem?"
             placeholder="In a tweet or less, answer the question for student participants."
             prepend-icon="mdi-hexagon-slice-2"
@@ -275,6 +276,7 @@
             v-model="programDoc.data.adks[index].rfp.interviewSolution"
             :error-messages="errors"
             outlined
+            counter="280"
             label="Who could be possible users of the solution created?"
             placeholder="In a tweet or less, answer the question for student participants."
             prepend-icon="mdi-hexagon-slice-3"
@@ -286,6 +288,7 @@
             v-model="programDoc.data.adks[index].rfp.interviewOpportunity"
             :error-messages="errors"
             outlined
+            counter="280"
             label="What are the opportunities?"
             placeholder="In a tweet or less, answer the question for student participants."
             prepend-icon="mdi-hexagon-slice-4"
@@ -297,6 +300,7 @@
             v-model="programDoc.data.adks[index].rfp.interviewChallenge"
             :error-messages="errors"
             outlined
+            counter="280"
             label="What are the known challenges?"
             placeholder="In a tweet or less, answer the question for student participants."
             prepend-icon="mdi-hexagon-slice-5"
@@ -308,6 +312,7 @@
             v-model="programDoc.data.adks[index].rfp.interviewRequest"
             :error-messages="errors"
             outlined
+            counter="280"
             label="Why are you requesting projects from students?"
             placeholder="In a tweet or less, answer the question for student participants."
             prepend-icon="mdi-hexagon-slice-6"

@@ -84,7 +84,7 @@
 
                     <span class="module-default__faq-answer-dark-highlight">
                       <!-- programDoc.data.adks[index].rfp.employerName --> </span
-                    >Below are answers to some key questions.
+                    >Below are answers to some key questions from the employer
                   </div></v-card-text
                 >
               </v-card>
@@ -206,14 +206,14 @@
       <br />
       <br />
       <template>
-        <v-card outlined elevation="0" max-width="85%" class="mx-auto">
+        <v-card tile outlined elevation="0" max-width="" class="mx-auto">
           <v-toolbar elevation="0" dark color="blue">
             <v-icon class="mr-4" large>mdi-telegram</v-icon>
             <v-toolbar-title class="module-default__specs-title"
               >Project Specifications</v-toolbar-title
             >
           </v-toolbar>
-          <v-subheader>Outcomes</v-subheader>
+          <v-subheader class="font-weight-bold">Outcomes</v-subheader>
           <v-list two-line subheader>
             <v-list-item>
               <div
@@ -227,22 +227,29 @@
             </v-list-item>
           </v-list>
           <!-- <v-divider></v-divider> -->
-          <v-subheader>Deliverables</v-subheader>
+          <v-subheader class="font-weight-bold">Deliverables</v-subheader>
           <v-list two-line subheader>
             <v-list-item>
               <div
                 v-for="(deliverable, itemIndex) in programDoc.data.adks[index].rfp.deliverable"
                 :key="itemIndex"
               >
-                <v-chip-group column>
+                <v-chip-group>
                   <v-chip dark>{{ deliverable }}</v-chip>
                 </v-chip-group>
               </div>
             </v-list-item>
           </v-list>
           <!-- <v-divider></v-divider> -->
-          <v-subheader>Requirements</v-subheader>
+          <v-subheader class="font-weight-bold">Requirements</v-subheader>
           <v-list two-line subheader>
+            <v-list-item>
+              <div>
+                <v-chip-group>
+                  <v-chip>None</v-chip>
+                </v-chip-group>
+              </div>
+            </v-list-item>
             <v-list-item
               v-for="(requirements, itemIndex) in programDoc.data.adks[index].rfp.projectReq"
               :key="itemIndex"
@@ -252,14 +259,21 @@
                   <v-checkbox :input-value="active" color="primary"></v-checkbox>
                 </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title>{{ requirements }}</v-list-item-title>
+                  <v-list-item-title>{{ requirements }} </v-list-item-title>
                 </v-list-item-content>
               </template>
             </v-list-item>
           </v-list>
           <!-- <v-divider></v-divider> -->
-          <v-subheader>Resources</v-subheader>
+          <v-subheader class="font-weight-bold">Resources</v-subheader>
           <v-list two-line subheader>
+            <v-list-item>
+              <div>
+                <v-chip-group>
+                  <v-chip>None</v-chip>
+                </v-chip-group>
+              </div>
+            </v-list-item>
             <v-list-item>
               <v-btn-group>
                 <v-btn
@@ -324,7 +338,8 @@
             </v-list-item>
           </v-list>
           <v-divider></v-divider>
-          <v-subheader>About</v-subheader>
+          <v-subheader class="font-weight-bold">About</v-subheader>
+
           <v-card-text>
             {{ sampleaboutOrg }}
             {{ programDoc.data.adks[index].rfp.aboutOrg }}</v-card-text
@@ -434,23 +449,23 @@ export default defineComponent({
     let sampleaboutOrg = ref('');
 
     if (programDoc.value.data.adks[index].rfp.employerName === '') {
-      sampleEmployerName = ref('SAMPLE Name 1');
+      sampleEmployerName = ref('Your employer name goes here');
     }
     if (programDoc.value.data.adks[index].rfp.projectScope === '') {
-      sampleProjectScope = ref('SAMPLE SCOPE 1');
+      sampleProjectScope = ref('Your employer is crafting their project scope');
     }
     if (programDoc.value.data.adks[index].rfp.interviewProblem === '') {
-      sampleInterviewProblem = ref('SAMPLE INPIUT 1');
+      sampleInterviewProblem = ref('Awaiting an answer from your employer');
     }
     if (programDoc.value.data.adks[index].rfp.interviewSolution === '') {
-      sampleInterviewSolution = ref('SAMPLE INPIUT 2');
+      sampleInterviewSolution = ref('Awaiting an answer from your employer');
     }
     if (programDoc.value.data.adks[index].rfp.interviewOpportunity === '') {
-      sampleInterviewOpportunity = ref('SAMPLE INPIUT 3');
+      sampleInterviewOpportunity = ref('Awaiting an answer from your employer');
     }
     if (programDoc.value.data.adks[index].rfp.interviewChallenge === '') {
-      sampleInterviewChallenge = ref('SAMPLE INPIUT 4');
-      sampleIR = ref('SAMPLE INPIUT 5');
+      sampleInterviewChallenge = ref('Awaiting an answer from your employer');
+      sampleIR = ref('Awaiting an answer from your employer');
     }
     // if (programDoc.value.data.adks[index].rfp.outcome === '') {
     //   sampleOutcome = ref('SAMPLE OUTPUT 6');
@@ -462,7 +477,7 @@ export default defineComponent({
     //   sampleProjectReq = ref('SAMPLE OUTPUT 8');
     // }
     if (programDoc.value.data.adks[index].rfp.aboutOrg === '') {
-      sampleaboutOrg = ref('SAMPLE OUTPUT 9');
+      sampleaboutOrg = ref('Awaiting a blurb about your employer');
     }
 
     return {
@@ -609,8 +624,8 @@ export default defineComponent({
   &__faq-question {
     // text-align: left;
     font-family: 'Raleway';
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 15px;
+    font-weight: 700;
     color: #404142;
   }
 
