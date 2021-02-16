@@ -6,10 +6,12 @@
         <!-- <div class="module-setup__none">No setup necessary</div> -->
         <!-- ENTER CONTENT HERE -->
         <!-- <v-divider class="presets__divider"></v-divider> -->
-        <div class="presets__section-title">Define Scope</div>
+        <div class="headline font-weight-bold text-center mb-10">Define Scope</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.employerName"
+            prepend-icon="mdi-music-accidental-sharp"
+            rounded
             :error-messages="errors"
             label="Employer Name"
             hint="Enter your organization name"
@@ -39,6 +41,9 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
             v-model="programDoc.data.adks[index].rfp.projectScope"
+            rounded
+            prepend-icon="mdi-text-subject"
+            counter="280"
             :error-messages="errors"
             outlined
             label="What is the project scope?"
@@ -72,6 +77,8 @@
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
             v-model="programDoc.data.adks[index].rfp.aboutOrg"
+            rounded
+            prepend-icon="mdi-book-open-variant"
             :error-messages="errors"
             outlined
             label="About your organization"
@@ -79,7 +86,7 @@
           ></v-textarea>
         </validation-provider>
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Select Specifications</div>
+        <div class="headline font-weight-bold text-center mb-10">Select Specifications</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
             v-model="programDoc.data.adks[index].rfp.outcome"
@@ -89,6 +96,7 @@
             label="Outcomes"
             multiple
             outlined
+            rounded
           ></v-select>
         </validation-provider>
         <div class="module-setup__buildscope">
@@ -104,12 +112,14 @@
             label="Deliverables"
             multiple
             outlined
+            rounded
           ></v-select>
         </validation-provider>
         <template>
           <validation-provider v-slot="{ errors }" slim>
             <v-combobox
               v-model="programDoc.data.adks[index].rfp.projectReq"
+              rounded
               outlined
               flat
               :items="items"
@@ -136,7 +146,7 @@
         </template>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Provide Links</div>
+        <div class="headline font-weight-bold text-center mb-10">Provide Links</div>
 
         <validation-provider
           v-slot="{ errors }"
@@ -151,7 +161,8 @@
             outlined
             label="Website"
             placeholder="https://www.employername.com/"
-            prepend-inner-icon="mdi-search-web"
+            prepend-icon="mdi-search-web"
+            rounded
           ></v-text-field>
         </validation-provider>
 
@@ -168,7 +179,8 @@
             outlined
             label="Instagram"
             placeholder="https://www.instagram.com/username"
-            prepend-inner-icon="mdi-instagram"
+            prepend-icon="mdi-instagram"
+            rounded
           ></v-text-field>
         </validation-provider>
 
@@ -185,7 +197,8 @@
             outlined
             label="LinkedIn"
             placeholder="https://www.linkedin.com/username"
-            prepend-inner-icon="mdi-linkedin"
+            prepend-icon="mdi-linkedin"
+            rounded
           ></v-text-field>
         </validation-provider>
 
@@ -202,7 +215,8 @@
             :error-messages="errors"
             label="Facebook"
             placeholder="https://www.facebook.com/username"
-            prepend-inner-icon="mdi-facebook"
+            prepend-icon="mdi-facebook"
+            rounded
           ></v-text-field>
         </validation-provider>
 
@@ -219,7 +233,8 @@
             outlined
             label="YouTube"
             placeholder="https://www.youtube.com/username"
-            prepend-inner-icon="mdi-youtube"
+            prepend-icon="mdi-youtube"
+            rounded
           ></v-text-field>
         </validation-provider>
 
@@ -236,12 +251,13 @@
             :error-messages="errors"
             label="Get Started Folder"
             placeholder="https://drive.google.com/foldername"
-            prepend-inner-icon="mdi-folder-google-drive"
+            prepend-icon="mdi-folder-google-drive"
+            rounded
           ></v-text-field>
         </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
-        <div class="presets__section-title">Key Questions</div>
+        <div class="headline font-weight-bold text-center mb-10">Key Questions</div>
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
@@ -250,6 +266,8 @@
             outlined
             label="What is the urgency of this problem?"
             placeholder="In a tweet or less, answer the question for student participants."
+            prepend-icon="mdi-hexagon-slice-2"
+            rounded
           ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
@@ -259,6 +277,8 @@
             outlined
             label="Who could be possible users of the solution created?"
             placeholder="In a tweet or less, answer the question for student participants."
+            prepend-icon="mdi-hexagon-slice-3"
+            rounded
           ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
@@ -268,6 +288,8 @@
             outlined
             label="What are the opportunities?"
             placeholder="In a tweet or less, answer the question for student participants."
+            prepend-icon="mdi-hexagon-slice-4"
+            rounded
           ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
@@ -277,6 +299,8 @@
             outlined
             label="What are the known challenges?"
             placeholder="In a tweet or less, answer the question for student participants."
+            prepend-icon="mdi-hexagon-slice-5"
+            rounded
           ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
@@ -286,10 +310,12 @@
             outlined
             label="Why are you requesting projects from students?"
             placeholder="In a tweet or less, answer the question for student participants."
+            prepend-icon="mdi-hexagon-slice-6"
+            rounded
           ></v-text-field>
         </validation-provider>
 
-        <div class="module-default__scope">
+        <div class="module-default__scope mt-12">
           <v-btn x-large depressed outlined :disabled="invalid" @click="save">Save</v-btn>
         </div>
       </div>
