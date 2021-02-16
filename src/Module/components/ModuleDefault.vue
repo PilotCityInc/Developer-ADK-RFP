@@ -48,10 +48,12 @@
       <!-- <div class="module-default__none">Design your activity here</div> -->
       <div class="module-default__scope">
         <v-btn dense color="blue" small rounded outlined depressed
-          >{{ programDoc.data.adks[index].rfp.employerName }}
+          >{{ sampleEmployerName }}
+          {{ programDoc.data.adks[index].rfp.employerName }}
         </v-btn>
         <br />
         <br />
+        {{ sampleProjectScope }}
         {{ programDoc.data.adks[index].rfp.projectScope }}
       </div>
       <br />
@@ -69,21 +71,20 @@
             <v-timeline-item v-for="n in 1" :key="n" color="green" fill-dot left large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <v-card outlined color="grey lighten-3" class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer-dark">
-                    Hi, my name is
-                    <span class="module-default__faq-answer-dark-highlight">Brittany Domnie</span>
-                    with
-                    <span class="module-default__faq-answer-dark-highlight">{{
-                      programDoc.data.adks[index].rfp.employerName
-                    }}</span
-                    >. Below are my answers to some key questions.
+                    <!-- Hi, I'm with -->
+                    <span class="module-default__faq-answer-dark-highlight"></span>
+
+                    <span class="module-default__faq-answer-dark-highlight">
+                      <!-- programDoc.data.adks[index].rfp.employerName --> </span
+                    >Below are answers to some key questions.
                   </div></v-card-text
                 >
               </v-card>
@@ -92,9 +93,9 @@
             <v-timeline-item v-for="n in 1" :key="n" color="green" fill-dot right large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <template v-slot:opposite>
@@ -105,6 +106,7 @@
               <v-card color="green" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
+                    {{ sampleInterviewProblem }}
                     {{ programDoc.data.adks[index].rfp.interviewProblem }}
                   </div></v-card-text
                 >
@@ -114,9 +116,9 @@
             <v-timeline-item v-for="n in 1" :key="n" right color="red" fill-dot large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <template v-slot:opposite>
@@ -127,6 +129,7 @@
               <v-card color="red" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
+                    {{ sampleInterviewSolution }}
                     {{ programDoc.data.adks[index].rfp.interviewSolution }}
                   </div></v-card-text
                 >
@@ -136,9 +139,9 @@
             <v-timeline-item v-for="n in 1" :key="n" right color="pink" fill-dot large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <template v-slot:opposite>
@@ -147,6 +150,7 @@
               <v-card color="pink" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
+                    {{ sampleInterviewOpportunity }}
                     {{ programDoc.data.adks[index].rfp.interviewOpportunity }}
                   </div></v-card-text
                 >
@@ -156,9 +160,9 @@
             <v-timeline-item v-for="n in 1" :key="n" right color="purple" fill-dot large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <template v-slot:opposite>
@@ -167,6 +171,7 @@
               <v-card color="purple" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
+                    {{ sampleInterviewChallenge }}
                     {{ programDoc.data.adks[index].rfp.interviewChallenge }}
                   </div></v-card-text
                 >
@@ -176,9 +181,9 @@
             <v-timeline-item v-for="n in 1" :key="n" right color="green" fill-dot large>
               <template v-slot:icon>
                 <v-avatar>
-                  <img
+                  <!-- <img
                     src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  />
+                  /> -->
                 </v-avatar>
               </template>
               <template v-slot:opposite>
@@ -189,6 +194,7 @@
               <v-card color="green" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
+                    {{ sampleIR }}
                     {{ programDoc.data.adks[index].rfp.interviewRequest }}
                   </div></v-card-text
                 >
@@ -257,6 +263,8 @@
             <v-list-item>
               <v-btn-group>
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceDrive != ''"
+                  id="resourcebutton"
                   class="ma-1"
                   depressed
                   small
@@ -265,6 +273,7 @@
                   >Get Started Folder</v-btn
                 >
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceWeb != ''"
                   class="ma-1"
                   depressed
                   small
@@ -273,6 +282,7 @@
                   >Website</v-btn
                 >
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceInsta != ''"
                   class="ma-1"
                   depressed
                   small
@@ -281,6 +291,7 @@
                   >Instagram</v-btn
                 >
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceLinkedIn != ''"
                   class="ma-1"
                   depressed
                   small
@@ -289,6 +300,7 @@
                   >LinkedIn</v-btn
                 >
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceFacebook != ''"
                   class="ma-1"
                   depressed
                   small
@@ -297,6 +309,7 @@
                   >Facebook</v-btn
                 >
                 <v-btn
+                  v-if="programDoc.data.adks[index].rfp.resourceYouTube != ''"
                   class="ma-1"
                   depressed
                   small
@@ -312,7 +325,10 @@
           </v-list>
           <v-divider></v-divider>
           <v-subheader>About</v-subheader>
-          <v-card-text>{{ programDoc.data.adks[index].rfp.aboutOrg }}</v-card-text>
+          <v-card-text>
+            {{ sampleaboutOrg }}
+            {{ programDoc.data.adks[index].rfp.aboutOrg }}</v-card-text
+          >
         </v-card>
       </template>
       <br />
@@ -343,7 +359,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed, reactive } from '@vue/composition-api';
+import { defineComponent, PropType, computed, reactive, ref } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
 
@@ -375,7 +391,7 @@ export default defineComponent({
         projectScope: '',
         introVideo: '',
         aboutOrg: '',
-        outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
+        outcome: ['Qualify for internship to execute on project'],
         deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
         projectReq: '',
         resourceWeb: '',
@@ -384,7 +400,7 @@ export default defineComponent({
         resourceFacebook: '',
         resourceYouTube: '',
         resourceDrive: '',
-        interviewProblem: '',
+        interviewProblem: 'Testing123456',
         interviewSolution: '',
         interviewOpportunity: '',
         interviewChallenge: '',
@@ -405,11 +421,66 @@ export default defineComponent({
     // const setup = reactive({
 
     // });
+    let sampleEmployerName = ref('');
+    let sampleProjectScope = ref('');
+    let sampleInterviewProblem = ref('');
+    let sampleInterviewSolution = ref('');
+    let sampleInterviewOpportunity = ref('');
+    let sampleInterviewChallenge = ref('');
+    let sampleIR = ref('');
+    const sampleOutcome = ref('');
+    const sampleDeliverable = ref('');
+    const sampleProjectReq = ref('');
+    let sampleaboutOrg = ref('');
+
+    if (programDoc.value.data.adks[index].rfp.employerName === '') {
+      sampleEmployerName = ref('SAMPLE Name 1');
+    }
+    if (programDoc.value.data.adks[index].rfp.projectScope === '') {
+      sampleProjectScope = ref('SAMPLE SCOPE 1');
+    }
+    if (programDoc.value.data.adks[index].rfp.interviewProblem === '') {
+      sampleInterviewProblem = ref('SAMPLE INPIUT 1');
+    }
+    if (programDoc.value.data.adks[index].rfp.interviewSolution === '') {
+      sampleInterviewSolution = ref('SAMPLE INPIUT 2');
+    }
+    if (programDoc.value.data.adks[index].rfp.interviewOpportunity === '') {
+      sampleInterviewOpportunity = ref('SAMPLE INPIUT 3');
+    }
+    if (programDoc.value.data.adks[index].rfp.interviewChallenge === '') {
+      sampleInterviewChallenge = ref('SAMPLE INPIUT 4');
+      sampleIR = ref('SAMPLE INPIUT 5');
+    }
+    // if (programDoc.value.data.adks[index].rfp.outcome === '') {
+    //   sampleOutcome = ref('SAMPLE OUTPUT 6');
+    // }
+    // if (programDoc.value.data.adks[index].rfp.deliverable === '') {
+    //   sampleDeliverable = ref('SAMPLE OUTPUT 7');
+    // }
+    // if (programDoc.value.data.adks[index].rfp.projectReq === '') {
+    //   sampleProjectReq = ref('SAMPLE OUTPUT 8');
+    // }
+    if (programDoc.value.data.adks[index].rfp.aboutOrg === '') {
+      sampleaboutOrg = ref('SAMPLE OUTPUT 9');
+    }
 
     return {
       populate,
       index,
-      programDoc
+      programDoc,
+      initRfpSetup,
+      sampleEmployerName,
+      sampleProjectScope,
+      sampleInterviewProblem,
+      sampleInterviewSolution,
+      sampleInterviewOpportunity,
+      sampleInterviewChallenge,
+      sampleIR,
+      sampleOutcome,
+      sampleDeliverable,
+      sampleProjectReq,
+      sampleaboutOrg
       // setup
     };
   },
