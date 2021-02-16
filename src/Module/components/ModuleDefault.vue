@@ -48,8 +48,8 @@
       <!-- <div class="module-default__none">Design your activity here</div> -->
       <div class="module-default__scope">
         <v-btn dense color="blue" small rounded outlined depressed
-          >{{ sampleEmployerName }}
-          {{ programDoc.data.adks[index].rfp.employerName }}
+          >{{ sampleEmployerName }} {{ programDoc.data.adks[index].rfp.employerName
+          }}<v-icon small right>mdi-open-in-new</v-icon>
         </v-btn>
         <br />
         <br />
