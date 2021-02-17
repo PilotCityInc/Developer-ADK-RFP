@@ -70,13 +70,13 @@
       <br />
       <br />
       <div class="module-default__faq">
-        <v-btn dense color="blue" large rounded outlined depressed>KEY QUESTIONS & ANSWERS</v-btn>
+        <v-btn color="white" disabled large rounded depressed>FREQUENTLY ASKED QUESTIONS</v-btn>
         <br />
         <br />
 
         <template>
           <v-timeline>
-            <v-timeline-item v-for="n in 1" :key="n" color="green" fill-dot left large>
+            <v-timeline-item v-for="n in 1" :key="n" color="grey" fill-dot left small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -98,7 +98,7 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" color="green" fill-dot right large>
+            <v-timeline-item v-for="n in 1" :key="n" color="red" fill-dot right small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -111,7 +111,7 @@
                   >What is the urgency of this problem?</span
                 >
               </template>
-              <v-card color="green" dark outlined class="elevation-0">
+              <v-card color="red" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewProblem }}
@@ -121,7 +121,7 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="red" fill-dot large>
+            <v-timeline-item v-for="n in 1" :key="n" right color="green" fill-dot small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -134,7 +134,7 @@
                   >Who could be possible users of the solution created?</span
                 >
               </template>
-              <v-card color="red" dark outlined class="elevation-0">
+              <v-card color="green" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewSolution }}
@@ -144,7 +144,7 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="pink" fill-dot large>
+            <v-timeline-item v-for="n in 1" :key="n" right color="purple" fill-dot small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -155,7 +155,7 @@
               <template v-slot:opposite>
                 <span class="module-default__faq-question">What are the opportunities?</span>
               </template>
-              <v-card color="pink" dark outlined class="elevation-0">
+              <v-card color="purple" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewOpportunity }}
@@ -165,7 +165,7 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="purple" fill-dot large>
+            <v-timeline-item v-for="n in 1" :key="n" right color="blue" fill-dot small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -176,7 +176,7 @@
               <template v-slot:opposite>
                 <span class="module-default__faq-question">What are the known challenges?</span>
               </template>
-              <v-card color="purple" dark outlined class="elevation-0">
+              <v-card color="blue" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewChallenge }}
@@ -186,7 +186,7 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="green" fill-dot large>
+            <v-timeline-item v-for="n in 1" :key="n" right color="pink" fill-dot small>
               <template v-slot:icon>
                 <v-avatar>
                   <!-- <img
@@ -199,7 +199,7 @@
                   >Why are you requesting projects from students?</span
                 >
               </template>
-              <v-card color="green" dark outlined class="elevation-0">
+              <v-card color="pink" dark outlined class="elevation-0">
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleIR }}
@@ -215,8 +215,8 @@
       <br />
       <template>
         <v-card tile outlined elevation="0" max-width="" class="mx-auto">
-          <v-toolbar elevation="0" dark color="blue">
-            <v-icon class="mr-4" large>mdi-telegram</v-icon>
+          <v-toolbar elevation="0" dark color="grey lighten-1">
+            <v-icon class="mr-4" large>mdi-clipboard-list</v-icon>
             <v-toolbar-title class="module-default__specs-title"
               >Project Specifications</v-toolbar-title
             >
