@@ -47,7 +47,15 @@
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
       <!-- <div class="module-default__none">Design your activity here</div> -->
       <div class="module-default__scope">
-        <v-btn dense color="blue" small rounded outlined depressed
+        <v-btn
+          dense
+          color="blue"
+          small
+          rounded
+          outlined
+          depressed
+          :href="programDoc.data.adks[index].rfp.resourceWeb"
+          target="_blank"
           >{{ sampleEmployerName }} {{ programDoc.data.adks[index].rfp.employerName
           }}<v-icon small right>mdi-open-in-new</v-icon>
         </v-btn>
@@ -243,10 +251,10 @@
           <!-- <v-divider></v-divider> -->
           <v-subheader class="font-weight-bold">Requirements</v-subheader>
           <v-list two-line subheader>
-            <v-list-item>
+            <v-list-item v-if="programDoc.data.adks[index].rfp.projectReq === ''">
               <div>
                 <v-chip-group>
-                  <v-chip>None</v-chip>
+                  <v-chip>{{ sampleProjectReq }}</v-chip>
                 </v-chip-group>
               </div>
             </v-list-item>
@@ -267,10 +275,19 @@
           <!-- <v-divider></v-divider> -->
           <v-subheader class="font-weight-bold">Resources</v-subheader>
           <v-list two-line subheader>
-            <v-list-item>
+            <v-list-item
+              v-if="
+                programDoc.data.adks[index].rfp.resourceDrive === '' &&
+                programDoc.data.adks[index].rfp.resourceWeb === '' &&
+                programDoc.data.adks[index].rfp.resourceInsta === '' &&
+                programDoc.data.adks[index].rfp.resourceFacebook === '' &&
+                programDoc.data.adks[index].rfp.resourceYouTube === '' &&
+                programDoc.data.adks[index].rfp.resourceLinkedIn === ''
+              "
+            >
               <div>
                 <v-chip-group>
-                  <v-chip>None</v-chip>
+                  <v-chip>{{ sampleResourceChip }}</v-chip>
                 </v-chip-group>
               </div>
             </v-list-item>
@@ -283,6 +300,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceDrive"
                   >Get Started Folder</v-btn
                 >
@@ -292,6 +310,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceWeb"
                   >Website</v-btn
                 >
@@ -301,6 +320,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceInsta"
                   >Instagram</v-btn
                 >
@@ -310,6 +330,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceLinkedIn"
                   >LinkedIn</v-btn
                 >
@@ -319,6 +340,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceFacebook"
                   >Facebook</v-btn
                 >
@@ -328,6 +350,7 @@
                   depressed
                   small
                   outlined
+                  target="_blank"
                   :href="programDoc.data.adks[index].rfp.resourceYouTube"
                   >YouTube</v-btn
                 >
@@ -380,6 +403,9 @@ import MongoDoc from '../types';
 
 export default defineComponent({
   name: 'ModuleDefault',
+  components: {
+    Instruct
+  },
   props: {
     value: {
       required: true,
@@ -445,8 +471,9 @@ export default defineComponent({
     let sampleIR = ref('');
     const sampleOutcome = ref('');
     const sampleDeliverable = ref('');
-    const sampleProjectReq = ref('');
+    let sampleProjectReq = ref('');
     let sampleaboutOrg = ref('');
+    let sampleResourceChip = ref('');
 
     if (programDoc.value.data.adks[index].rfp.employerName === '') {
       sampleEmployerName = ref('Your employer name goes here');
@@ -473,11 +500,21 @@ export default defineComponent({
     // if (programDoc.value.data.adks[index].rfp.deliverable === '') {
     //   sampleDeliverable = ref('SAMPLE OUTPUT 7');
     // }
-    // if (programDoc.value.data.adks[index].rfp.projectReq === '') {
-    //   sampleProjectReq = ref('SAMPLE OUTPUT 8');
-    // }
+    if (programDoc.value.data.adks[index].rfp.projectReq === '') {
+      sampleProjectReq = ref('None');
+    }
     if (programDoc.value.data.adks[index].rfp.aboutOrg === '') {
       sampleaboutOrg = ref('Awaiting a blurb about your employer');
+    }
+    if (
+      programDoc.value.data.adks[index].rfp.resourceDrive === '' &&
+      programDoc.value.data.adks[index].rfp.resourceWeb === '' &&
+      programDoc.value.data.adks[index].rfp.resourceInsta === '' &&
+      programDoc.value.data.adks[index].rfp.resourceFacebook === '' &&
+      programDoc.value.data.adks[index].rfp.resourceYouTube === '' &&
+      programDoc.value.data.adks[index].rfp.resourceLinkedIn === ''
+    ) {
+      sampleResourceChip = ref('None');
     }
 
     return {
@@ -495,7 +532,8 @@ export default defineComponent({
       sampleOutcome,
       sampleDeliverable,
       sampleProjectReq,
-      sampleaboutOrg
+      sampleaboutOrg,
+      sampleResourceChip
       // setup
     };
   },

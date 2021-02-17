@@ -321,7 +321,15 @@
         </validation-provider>
 
         <div class="module-default__scope mt-12">
-          <v-btn x-large depressed outlined :disabled="invalid" @click="save">Save</v-btn>
+          <v-btn
+            x-large
+            depressed
+            outlined
+            :disabled="invalid"
+            :loading="saveLoading"
+            @click="saveButton"
+            >Save</v-btn
+          >
         </div>
       </div>
     </v-container>
@@ -384,17 +392,20 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    const loading = ref(false);
-    const errormsg = ref('');
-    async function save() {
-      loading.value = true;
+    const status = ref('');
+    const saveData = reactive({
+      saveLoading: false
+    });
+    async function saveButton() {
+      saveData.saveLoading = true;
       try {
         await programDoc.value.save();
-        errormsg.value = '';
+        status.value = 'Saved Successfully';
       } catch (err) {
-        errormsg.value = 'Could not save';
+        console.log(err);
+        status.value = `${'Something went wrong, try again later\n'}${err}`;
       }
-      loading.value = false;
+      saveData.saveLoading = false;
     }
 
     function populate() {
@@ -412,10 +423,10 @@ export default defineComponent({
     return {
       ...toRefs(setup),
       populate,
-      errormsg,
+      status,
       index,
-      save,
-      loading,
+      saveButton,
+      saveData,
       programDoc
     };
   }
