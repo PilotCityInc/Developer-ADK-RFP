@@ -242,7 +242,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
+            regex: /(?:http|https):\/\/(?:drive.google.com)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
           }"
         >
           <v-text-field
