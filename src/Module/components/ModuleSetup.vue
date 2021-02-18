@@ -188,7 +188,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:in)\/(?:[A-z0-9_-])/
+            regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
           }"
         >
           <v-text-field
@@ -242,7 +242,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:drive.google.com)\/(?:drive)/
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
           }"
         >
           <v-text-field
@@ -329,6 +329,12 @@
             :loading="saveLoading"
             @click="saveButton"
             >Save</v-btn
+          >
+          <v-alert
+            v-if="status.length"
+            class="mt-3"
+            :type="status.includes('Saved') ? 'success' : 'error'"
+            >{{ status }}</v-alert
           >
         </div>
       </div>
@@ -426,7 +432,7 @@ export default defineComponent({
       status,
       index,
       saveButton,
-      saveData,
+      ...toRefs(saveData),
       programDoc
     };
   }
