@@ -242,7 +242,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:drive.google.com)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
           }"
         >
           <v-text-field
@@ -326,16 +326,11 @@
             depressed
             outlined
             :disabled="invalid"
-            :loading="saveLoading"
-            @click="saveButton"
+            :loading="loading"
+            @click="process()"
             >Save</v-btn
           >
-          <v-alert
-            v-if="status.length"
-            class="mt-3"
-            :type="status.includes('Saved') ? 'success' : 'error'"
-            >{{ status }}</v-alert
-          >
+          <v-alert v-if="success || error" v-alert:type="success ? 'success' : 'error'"/< >
         </div>
       </div>
     </v-container>
@@ -344,6 +339,7 @@
 
 <script lang="ts">
 import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
+import { createLoader, getModAdk } from 'pcv4lib/src';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
@@ -398,22 +394,6 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    const status = ref('');
-    const saveData = reactive({
-      saveLoading: false
-    });
-    async function saveButton() {
-      saveData.saveLoading = true;
-      try {
-        await programDoc.value.save();
-        status.value = 'Saved Successfully';
-      } catch (err) {
-        console.log(err);
-        status.value = `${'Something went wrong, try again later\n'}${err}`;
-      }
-      saveData.saveLoading = false;
-    }
-
     function populate() {
       programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
     }
@@ -429,11 +409,9 @@ export default defineComponent({
     return {
       ...toRefs(setup),
       populate,
-      status,
       index,
-      saveButton,
-      ...toRefs(saveData),
-      programDoc
+      programDoc,
+      ...createLoader(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
     };
   }
 
