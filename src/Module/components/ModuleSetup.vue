@@ -3,7 +3,8 @@
     <v-container class="module-edit">
       <div class="module-edit__container">
         <!-- NO SETUP NECESSARY / COMMENT OUT IF SETUP IS NECESSARY -->
-        <!-- <div class="module-setup__none">No setup necessary</div> -->
+        <!-- <div class="module-setup
+        __none">No setup necessary</div> -->
         <!-- ENTER CONTENT HERE -->
         <!-- <v-divider class="presets__divider"></v-divider> -->
         <div class="headline font-weight-bold text-center mb-10">Define Scope</div>
@@ -81,10 +82,33 @@
             prepend-icon="mdi-book-open-variant"
             :error-messages="errors"
             outlined
+            class="mb-3"
             label="About your organization"
             placeholder="In a paragraph or less, describe your organization"
           ></v-textarea>
         </validation-provider>
+
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="
+            ({
+              regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
+            },
+            { required })
+          "
+        >
+          <v-text-field
+            v-model="programDoc.data.adks[index].rfp.resourceWeb"
+            :error-messages="errors"
+            outlined
+            label="Website"
+            placeholder="https://www.employername.com/"
+            prepend-icon="mdi-search-web"
+            rounded
+          ></v-text-field>
+        </validation-provider>
+
         <v-divider class="presets__divider"></v-divider>
         <div class="headline font-weight-bold text-center mb-10">Select Specifications</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
@@ -97,6 +121,7 @@
             multiple
             outlined
             rounded
+            readonly
           ></v-select>
         </validation-provider>
         <div class="module-setup__buildscope">
@@ -109,6 +134,7 @@
             :items="deliverables"
             :error-messages="errors"
             chips
+            readonly
             label="Deliverables"
             multiple
             outlined
@@ -117,7 +143,7 @@
         </validation-provider>
         <template>
           <validation-provider v-slot="{ errors }" slim>
-            <v-combobox
+            <v-select
               v-model="programDoc.data.adks[index].rfp.projectReq"
               rounded
               outlined
@@ -141,30 +167,12 @@
                   <span></span>
                 </v-chip>
               </template>
-            </v-combobox>
+            </v-select>
           </validation-provider>
         </template>
 
         <v-divider class="presets__divider"></v-divider>
         <div class="headline font-weight-bold text-center mb-10">Provide Links</div>
-
-        <validation-provider
-          v-slot="{ errors }"
-          slim
-          :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
-          }"
-        >
-          <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceWeb"
-            :error-messages="errors"
-            outlined
-            label="Website"
-            placeholder="https://www.employername.com/"
-            prepend-icon="mdi-search-web"
-            rounded
-          ></v-text-field>
-        </validation-provider>
 
         <validation-provider
           v-slot="{ errors }"
@@ -242,7 +250,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
           }"
         >
           <v-text-field
@@ -326,11 +334,16 @@
             depressed
             outlined
             :disabled="invalid"
-            :loading="loading"
-            @click="process()"
+            :loading="saveLoading"
+            @click="saveButton"
             >Save</v-btn
           >
-          <v-alert v-if="success || error" v-alert:type="success ? 'success' : 'error'"/< >
+          <v-alert
+            v-if="status.length"
+            class="mt-3"
+            :type="status.includes('Saved') ? 'success' : 'error'"
+            >{{ status }}</v-alert
+          >
         </div>
       </div>
     </v-container>
@@ -339,7 +352,6 @@
 
 <script lang="ts">
 import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
-import { createLoader, getModAdk } from 'pcv4lib/src';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
@@ -394,6 +406,22 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
+    const status = ref('');
+    const saveData = reactive({
+      saveLoading: false
+    });
+    async function saveButton() {
+      saveData.saveLoading = true;
+      try {
+        await programDoc.value.save();
+        status.value = 'Saved Successfully';
+      } catch (err) {
+        console.log(err);
+        status.value = `${'Something went wrong, try again later\n'}${err}`;
+      }
+      saveData.saveLoading = false;
+    }
+
     function populate() {
       programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
     }
@@ -409,9 +437,11 @@ export default defineComponent({
     return {
       ...toRefs(setup),
       populate,
+      status,
       index,
-      programDoc,
-      ...createLoader(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
+      saveButton,
+      ...toRefs(saveData),
+      programDoc
     };
   }
 
