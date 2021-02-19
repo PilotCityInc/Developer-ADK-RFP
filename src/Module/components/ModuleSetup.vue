@@ -253,11 +253,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-<<<<<<< HEAD
             regex: /^((?:https?:)?\/\/)?((?:www)\.)?((?:(.*)\.com))(.*)/
-=======
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
->>>>>>> 45518082fc61b5509bf5b18966d7b90dc1cebc7b
           }"
         >
           <v-text-field
@@ -345,18 +341,9 @@
             @click="saveButton"
             >Save</v-btn
           >
-<<<<<<< HEAD
           <v-alert v-if="success || error" :type="success ? 'success' : 'error'">{{
             message
           }}</v-alert>
-=======
-          <v-alert
-            v-if="status.length"
-            class="mt-3"
-            :type="status.includes('Saved') ? 'success' : 'error'"
-            >{{ status }}</v-alert
-          >
->>>>>>> 45518082fc61b5509bf5b18966d7b90dc1cebc7b
         </div>
       </div>
     </v-container>
