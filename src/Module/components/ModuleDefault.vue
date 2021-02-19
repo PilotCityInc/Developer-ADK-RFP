@@ -56,13 +56,13 @@
           depressed
           :href="programDoc.data.adks[index].rfp.resourceWeb"
           target="_blank"
-          >{{ sampleEmployerName }} {{ programDoc.data.adks[index].rfp.employerName
+          >{{ sampleEmployerName }} {{ programDoc.data.programName
           }}<v-icon small right>mdi-open-in-new</v-icon>
         </v-btn>
         <br />
         <br />
         {{ sampleProjectScope }}
-        {{ programDoc.data.adks[index].rfp.projectScope }}
+        {{ programDoc.data.programDesc }}
       </div>
       <br />
       <br />
@@ -478,7 +478,7 @@ export default defineComponent({
     if (programDoc.value.data.adks[index].rfp.employerName === '') {
       sampleEmployerName = ref('Your employer name goes here');
     }
-    if (programDoc.value.data.adks[index].rfp.projectScope === '') {
+    if (programDoc.value.data.programDesc === '') {
       sampleProjectScope = ref('Your employer is crafting their project scope');
     }
     if (programDoc.value.data.adks[index].rfp.interviewProblem === '') {

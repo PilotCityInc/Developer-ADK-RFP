@@ -9,7 +9,7 @@
         <div class="headline font-weight-bold text-center mb-10">Define Scope</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.employerName"
+            v-model="programDoc.data.programName"
             prepend-icon="mdi-music-accidental-sharp"
             rounded
             :error-messages="errors"
@@ -40,7 +40,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="programDoc.data.adks[index].rfp.projectScope"
+            v-model="programDoc.data.programDesc"
             rounded
             prepend-icon="mdi-text-subject"
             counter="280"
@@ -187,9 +187,12 @@
         <validation-provider
           v-slot="{ errors }"
           slim
-          :rules="{
-            regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
-          }"
+          :rules="
+            ({
+              regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+            },
+            { required })
+          "
         >
           <v-text-field
             v-model="programDoc.data.adks[index].rfp.resourceLinkedIn"
@@ -242,7 +245,7 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+            regex: /^((?:https?:)?\/\/)?((?:www)\.)?((?:(.*)\.com))(.*)/
           }"
         >
           <v-text-field
@@ -330,7 +333,9 @@
             @click="process()"
             >Save</v-btn
           >
-          <v-alert v-if="success || error" v-alert:type="success ? 'success' : 'error'"/< >
+          <v-alert v-if="success || error" :type="success ? 'success' : 'error'">{{
+            message
+          }}</v-alert>
         </div>
       </div>
     </v-container>
@@ -364,6 +369,11 @@ export default defineComponent({
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
       return obj.name === 'rfp';
     });
+
+    const indexSetup = programDoc.value.data.adks.findIndex(function findSetupObj(obj) {
+      return obj.name === 'setup';
+    });
+
     const initRfpSetup = {
       rfp: {
         employerName: '',
