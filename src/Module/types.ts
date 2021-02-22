@@ -4,6 +4,6 @@ export default interface MongoDoc {
     programDesc: string;
     programName: string;
   };
-  save: () => Promise<any>;
+  update: () => Promise<any>;
   changeStream: any;
 }

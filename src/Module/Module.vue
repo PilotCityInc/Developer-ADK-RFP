@@ -253,7 +253,7 @@ body {
 <script lang="ts">
 import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
 import '../styles/module.scss';
-import { Collection } from 'mongodb';
+// import { Collection } from 'mongodb';
 import * as Module from './components';
 import MongoDoc from './types';
 
@@ -282,6 +282,7 @@ export default defineComponent({
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
       return obj.name === 'rfp';
     });
+    console.log(index);
     if (index === -1) {
       const initRfp = {
         name: 'rfp'

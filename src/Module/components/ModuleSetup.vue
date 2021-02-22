@@ -25,7 +25,7 @@
 
         <!-- <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.employerWebsite"
+            v-model="programDoc.data.adks[index].employerWebsite"
             :error-messages="errors"
             label="Employer Website"
             hint="Enter your website address"
@@ -63,7 +63,7 @@
           }"
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.introVideo"
+            v-model="programDoc.data.adks[index].introVideo"
             outlined
             :error-messages="errors"
             label="Enter Introduction Video (YouTube URL Link)"
@@ -77,7 +77,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-textarea
-            v-model="programDoc.data.adks[index].rfp.aboutOrg"
+            v-model="programDoc.data.adks[index].aboutOrg"
             rounded
             prepend-icon="mdi-book-open-variant"
             :error-messages="errors"
@@ -99,7 +99,7 @@
           "
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceWeb"
+            v-model="programDoc.data.adks[index].resourceWeb"
             :error-messages="errors"
             outlined
             label="Website"
@@ -113,7 +113,7 @@
         <div class="headline font-weight-bold text-center mb-10">Select Specifications</div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="programDoc.data.adks[index].rfp.outcome"
+            v-model="programDoc.data.adks[index].outcome"
             :error-messages="errors"
             :items="outcomes"
             chips
@@ -130,7 +130,7 @@
         </div>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-select
-            v-model="programDoc.data.adks[index].rfp.deliverable"
+            v-model="programDoc.data.adks[index].deliverable"
             :items="deliverables"
             :error-messages="errors"
             chips
@@ -144,7 +144,7 @@
         <template>
           <validation-provider v-slot="{ errors }" slim>
             <v-select
-              v-model="programDoc.data.adks[index].rfp.projectReq"
+              v-model="programDoc.data.adks[index].projectReq"
               rounded
               outlined
               flat
@@ -182,7 +182,7 @@
           }"
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceInsta"
+            v-model="programDoc.data.adks[index].resourceInsta"
             :error-messages="errors"
             outlined
             label="Instagram"
@@ -203,7 +203,7 @@
           "
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceLinkedIn"
+            v-model="programDoc.data.adks[index].resourceLinkedIn"
             :error-messages="errors"
             outlined
             label="LinkedIn"
@@ -221,7 +221,7 @@
           }"
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceFacebook"
+            v-model="programDoc.data.adks[index].resourceFacebook"
             outlined
             :error-messages="errors"
             label="Facebook"
@@ -239,7 +239,7 @@
           }"
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceYouTube"
+            v-model="programDoc.data.adks[index].resourceYouTube"
             :error-messages="errors"
             outlined
             label="YouTube"
@@ -257,7 +257,7 @@
           }"
         >
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.resourceDrive"
+            v-model="programDoc.data.adks[index].resourceDrive"
             outlined
             :error-messages="errors"
             label="Get Started Folder"
@@ -272,7 +272,7 @@
 
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.interviewProblem"
+            v-model="programDoc.data.adks[index].interviewProblem"
             :error-messages="errors"
             outlined
             counter="280"
@@ -284,7 +284,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.interviewSolution"
+            v-model="programDoc.data.adks[index].interviewSolution"
             :error-messages="errors"
             outlined
             counter="280"
@@ -296,7 +296,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.interviewOpportunity"
+            v-model="programDoc.data.adks[index].interviewOpportunity"
             :error-messages="errors"
             outlined
             counter="280"
@@ -308,7 +308,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.interviewChallenge"
+            v-model="programDoc.data.adks[index].interviewChallenge"
             :error-messages="errors"
             outlined
             counter="280"
@@ -320,7 +320,7 @@
         </validation-provider>
         <validation-provider v-slot="{ errors }" slim rules="required">
           <v-text-field
-            v-model="programDoc.data.adks[index].rfp.interviewRequest"
+            v-model="programDoc.data.adks[index].interviewRequest"
             :error-messages="errors"
             outlined
             counter="280"
@@ -346,22 +346,18 @@
 
 <script lang="ts">
 /* eslint-disable no-unused-expressions */
-import {
-  reactive,
-  toRefs,
-  PropType,
-  computed,
-  defineComponent,
-  ref,
-  Ref
-} from '@vue/composition-api';
+import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
 import { createLoader } from 'pcv4lib/src';
+import { ValidationObserver, ValidationProvider } from '@/validation';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
-// import gql from 'graphql-tag';
 
 export default defineComponent({
   name: 'ModuleSetup',
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   props: {
     value: {
       required: true,
@@ -382,27 +378,25 @@ export default defineComponent({
     });
 
     const initRfpSetup = {
-      rfp: {
-        employerWebsite: '',
-        projectScope: '',
-        introVideo: '',
-        aboutOrg: '',
-        outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
-        deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
-        projectReq: '',
-        resourceWeb: '',
-        resourceInsta: '',
-        resourceLinkedIn: '',
-        resourceFacebook: '',
-        resourceYouTube: '',
-        resourceDrive: '',
-        interviewProblem: '',
-        interviewSolution: '',
-        interviewOpportunity: '',
-        interviewChallenge: '',
-        interviewReqeust: '',
-        required: false
-      }
+      employerWebsite: '',
+      projectScope: '',
+      introVideo: '',
+      aboutOrg: '',
+      outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
+      deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
+      projectReq: '',
+      resourceWeb: '',
+      resourceInsta: '',
+      resourceLinkedIn: '',
+      resourceFacebook: '',
+      resourceYouTube: '',
+      resourceDrive: '',
+      interviewProblem: '',
+      interviewSolution: '',
+      interviewOpportunity: '',
+      interviewChallenge: '',
+      interviewReqeust: '',
+      required: false
     };
 
     programDoc.value.data.adks[index] = {
@@ -411,21 +405,6 @@ export default defineComponent({
     };
 
     const status = ref('');
-    const saveData = reactive({
-      saveLoading: false
-    });
-    async function saveButton() {
-      saveData.saveLoading = true;
-      try {
-        await programDoc.value.save();
-        status.value = 'Saved Successfully';
-      } catch (err) {
-        console.log(err);
-        status.value = `${'Something went wrong, try again later\n'}${err}`;
-      }
-      saveData.saveLoading = false;
-    }
-
     const setup = reactive({
       outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
       // outcomesValue,
@@ -434,68 +413,12 @@ export default defineComponent({
       chips,
       items
     });
-    // function makeAString() {
-    //   return 'a string';
-    // }
-    // console.log(makeAString);
-    function add() {
-      const x = 2;
-      const y = 3;
-      const z = x + y;
-      return z;
-    }
-    interface MyObj {
-      num: Ref<number>;
-      inc: () => void;
-    }
-    function makeObj(x: number): MyObj {
-      const num = ref(x);
-      function inc() {
-        num.value += 1;
-      }
-      return {
-        num,
-        inc
-      };
-    }
-    const { num, inc } = makeObj(3); // {num,inc} => num, inc
-
-    // const { num } = makeObj(3); // { num, inc} => num
-    // const { inc } = makeObj(3); // {num,inc} => inc
-
-    // const { inc } = makeObj(3);
-    console.log(num.value);
-    inc();
-    console.log(num.value);
-    //
-    // const y = makeObj(3);
-    // console.log(y.num.value);
-    // y.inc();
-    // console.log(y.num.value);
-    // const numObj = makeObj(3);
-    // console.log(numObj.num.value); // 3
-    // numObj.inc();
-    // console.log(numObj.num.value); // 4
-    const { message, error, loading, process, success } = createLoader(
-      programDoc.value.save,
-      'Saved',
-      'not saved'
-    );
-
-    // const { loading, process } = createLoader(
-    //   programDoc.value.save,
-    //   'Saved Succcessfully',
-    //   'Could not save, try again later'
-    // );
-    // console.log(createLoader(process));
     return {
       ...toRefs(setup),
       status,
       index,
-      saveButton,
-      ...toRefs(saveData),
       programDoc,
-      ...createLoader(programDoc.value.save, 'Saved', 'not saved')
+      ...createLoader(programDoc.value.update, 'Saved', 'not saved')
     };
   }
 });
