@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 // import ApolloExample from './components/ApolloExample.vue';
 import { defineComponent, ref, Ref } from '@vue/composition-api';
 import Module from './Module/Module.vue';
@@ -20,9 +19,12 @@ export default defineComponent({
   setup() {
     const programDocStub: Ref<MongoDoc> = ref({
       data: {
-        adks: []
+        adks: [],
+        programDesc: 'Mocked Description',
+        programName: 'Mocked Name'
       },
       save: () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve(true);

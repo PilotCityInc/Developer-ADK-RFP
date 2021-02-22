@@ -95,7 +95,7 @@
             ({
               regex: /(?:http|https):\/\/(?:www.)(?:\w+|\d+)(?:.com)/
             },
-            { required })
+            { required: true })
           "
         >
           <v-text-field
@@ -199,7 +199,7 @@
             ({
               regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
             },
-            { required })
+            { required: true })
           "
         >
           <v-text-field
@@ -332,13 +332,7 @@
         </validation-provider>
 
         <div class="module-default__scope mt-12">
-          <v-btn
-            x-large
-            depressed
-            outlined
-            :disabled="invalid"
-            :loading="saveLoading"
-            @click="saveButton"
+          <v-btn x-large depressed outlined :disabled="invalid" :loading="loading" @click="process"
             >Save</v-btn
           >
           <v-alert v-if="success || error" :type="success ? 'success' : 'error'">{{
@@ -351,7 +345,17 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
+/* eslint-disable no-unused-expressions */
+import {
+  reactive,
+  toRefs,
+  PropType,
+  computed,
+  defineComponent,
+  ref,
+  Ref
+} from '@vue/composition-api';
+import { createLoader } from 'pcv4lib/src';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
@@ -377,13 +381,8 @@ export default defineComponent({
       return obj.name === 'rfp';
     });
 
-    const indexSetup = programDoc.value.data.adks.findIndex(function findSetupObj(obj) {
-      return obj.name === 'setup';
-    });
-
     const initRfpSetup = {
       rfp: {
-        employerName: '',
         employerWebsite: '',
         projectScope: '',
         introVideo: '',
@@ -427,9 +426,6 @@ export default defineComponent({
       saveData.saveLoading = false;
     }
 
-    function populate() {
-      programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
-    }
     const setup = reactive({
       outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
       // outcomesValue,
@@ -438,54 +434,70 @@ export default defineComponent({
       chips,
       items
     });
+    // function makeAString() {
+    //   return 'a string';
+    // }
+    // console.log(makeAString);
+    function add() {
+      const x = 2;
+      const y = 3;
+      const z = x + y;
+      return z;
+    }
+    interface MyObj {
+      num: Ref<number>;
+      inc: () => void;
+    }
+    function makeObj(x: number): MyObj {
+      const num = ref(x);
+      function inc() {
+        num.value += 1;
+      }
+      return {
+        num,
+        inc
+      };
+    }
+    const { num, inc } = makeObj(3); // {num,inc} => num, inc
 
+    // const { num } = makeObj(3); // { num, inc} => num
+    // const { inc } = makeObj(3); // {num,inc} => inc
+
+    // const { inc } = makeObj(3);
+    console.log(num.value);
+    inc();
+    console.log(num.value);
+    //
+    // const y = makeObj(3);
+    // console.log(y.num.value);
+    // y.inc();
+    // console.log(y.num.value);
+    // const numObj = makeObj(3);
+    // console.log(numObj.num.value); // 3
+    // numObj.inc();
+    // console.log(numObj.num.value); // 4
+    const { message, error, loading, process, success } = createLoader(
+      programDoc.value.save,
+      'Saved',
+      'not saved'
+    );
+
+    // const { loading, process } = createLoader(
+    //   programDoc.value.save,
+    //   'Saved Succcessfully',
+    //   'Could not save, try again later'
+    // );
+    // console.log(createLoader(process));
     return {
       ...toRefs(setup),
-      populate,
       status,
       index,
       saveButton,
       ...toRefs(saveData),
-      programDoc
+      programDoc,
+      ...createLoader(programDoc.value.save, 'Saved', 'not saved')
     };
   }
-
-  // setup() {
-  //   const setup = reactive({
-  //     outcomes,
-  //     outcomesValue,
-  //     deliverables,
-  //     deliverablesValue,
-  //     chips,
-  //     items
-  //   });
-
-  //   const employer = reactive({
-  //     employerName: '',
-  //     employerWebsite: '',
-  //     projectScope: '',
-  //     introVideo: '',
-  //     aboutOrg: '',
-  //     outcome: [] as string[],
-  //     deliverable: [] as string[],
-  //     projectReq: [] as string[],
-  //     resourceWeb: '',
-  //     resourceInsta: '',
-  //     resourceLinkedIn: '',
-  //     resourceFacebook: '',
-  //     resourceYouTube: '',
-  //     resourceDrive: '',
-  //     interviewProblem: '',
-  //     interviewSolution: '',
-  //     interviewOpportunity: '',
-  //     interviewChallenge: '',
-  //     interviewRequest: ''
-  //   });
-  //   return {
-  //     ...toRefs(setup),
-  //     ...toRefs(employer)
-  //   };
-  // }
 });
 </script>
 

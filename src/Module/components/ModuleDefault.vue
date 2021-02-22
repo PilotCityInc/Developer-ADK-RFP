@@ -397,7 +397,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed, reactive, ref } from '@vue/composition-api';
+import { defineComponent, PropType, computed, ref } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
 
@@ -455,13 +455,6 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    function populate() {
-      programDoc.value.data.adks[index].rfp.push(initRfpSetup.rfp[0]);
-    }
-
-    // const setup = reactive({
-
-    // });
     let sampleEmployerName = ref('');
     let sampleProjectScope = ref('');
     let sampleInterviewProblem = ref('');
@@ -518,7 +511,6 @@ export default defineComponent({
     }
 
     return {
-      populate,
       index,
       programDoc,
       initRfpSetup,
