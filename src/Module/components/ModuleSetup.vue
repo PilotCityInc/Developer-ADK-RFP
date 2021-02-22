@@ -413,63 +413,6 @@ export default defineComponent({
       chips,
       items
     });
-<<<<<<< HEAD
-=======
-    // function makeAString() {
-    //   return 'a string';
-    // }
-    // console.log(makeAString);
-    // function add() {
-    //   const x = 2;
-    //   const y = 3;
-    //   const z = x + y;
-    //   return z;
-    // }
-    interface MyObj {
-      num: Ref<number>;
-      inc: () => void;
-    }
-    function makeObj(x: number): MyObj {
-      const num = ref(x);
-      function inc() {
-        num.value += 1;
-      }
-      return {
-        num,
-        inc
-      };
-    }
-    const { num, inc } = makeObj(3); // {num,inc} => num, inc
-
-    // const { num } = makeObj(3); // { num, inc} => num
-    // const { inc } = makeObj(3); // {num,inc} => inc
-
-    // const { inc } = makeObj(3);
-    console.log(num.value);
-    inc();
-    console.log(num.value);
-    //
-    // const y = makeObj(3);
-    // console.log(y.num.value);
-    // y.inc();
-    // console.log(y.num.value);
-    // const numObj = makeObj(3);
-    // console.log(numObj.num.value); // 3
-    // numObj.inc();
-    // console.log(numObj.num.value); // 4
-    // const { message, error, loading, process, success } = createLoader(
-    //   programDoc.value.save,
-    //   'Saved',
-    //   'not saved'
-    // );
-
-    // const { loading, process } = createLoader(
-    //   programDoc.value.save,
-    //   'Saved Succcessfully',
-    //   'Could not save, try again later'
-    // );
-    // console.log(createLoader(process));
->>>>>>> a26cb1877cfa0c282edcc1e64fc4a749ed0a0519
     return {
       ...toRefs(setup),
       status,
