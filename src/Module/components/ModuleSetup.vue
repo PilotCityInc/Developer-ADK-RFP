@@ -356,12 +356,17 @@ import {
   Ref
 } from '@vue/composition-api';
 import { createLoader } from 'pcv4lib/src';
+import { ValidationObserver, ValidationProvider } from '@/validation';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
 // import gql from 'graphql-tag';
 
 export default defineComponent({
   name: 'ModuleSetup',
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   props: {
     value: {
       required: true,
