@@ -438,12 +438,12 @@ export default defineComponent({
     //   return 'a string';
     // }
     // console.log(makeAString);
-    function add() {
-      const x = 2;
-      const y = 3;
-      const z = x + y;
-      return z;
-    }
+    // function add() {
+    //   const x = 2;
+    //   const y = 3;
+    //   const z = x + y;
+    //   return z;
+    // }
     interface MyObj {
       num: Ref<number>;
       inc: () => void;
@@ -476,11 +476,11 @@ export default defineComponent({
     // console.log(numObj.num.value); // 3
     // numObj.inc();
     // console.log(numObj.num.value); // 4
-    const { message, error, loading, process, success } = createLoader(
-      programDoc.value.save,
-      'Saved',
-      'not saved'
-    );
+    // const { message, error, loading, process, success } = createLoader(
+    //   programDoc.value.save,
+    //   'Saved',
+    //   'not saved'
+    // );
 
     // const { loading, process } = createLoader(
     //   programDoc.value.save,

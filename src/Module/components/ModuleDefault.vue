@@ -456,7 +456,7 @@ export default defineComponent({
     };
 
     let sampleEmployerName = ref('');
-    let sampleProjectScope = ref('');
+    const sampleProjectScope = ref('');
     let sampleInterviewProblem = ref('');
     let sampleInterviewSolution = ref('');
     let sampleInterviewOpportunity = ref('');
@@ -471,9 +471,9 @@ export default defineComponent({
     if (programDoc.value.data.adks[index].rfp.employerName === '') {
       sampleEmployerName = ref('Your employer name goes here');
     }
-    if (programDoc.value.data.programDesc === '') {
-      sampleProjectScope = ref('Your employer is crafting their project scope');
-    }
+    // if (programDoc.programDesc === '') {
+    //   sampleProjectScope = ref('Your employer is crafting their project scope');
+    // }
     if (programDoc.value.data.adks[index].rfp.interviewProblem === '') {
       sampleInterviewProblem = ref('Awaiting an answer from your employer');
     }
