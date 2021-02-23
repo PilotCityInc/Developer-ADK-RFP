@@ -569,7 +569,8 @@ export default defineComponent({
 
   &__collapse-divider {
     margin-top: 15px;
-    margin-bottom: 75px;
+    // margin-bottom: 75px;
+    margin-bottom: none !important;
     margin-right: none;
     margin-left: none;
     padding-right: none;
