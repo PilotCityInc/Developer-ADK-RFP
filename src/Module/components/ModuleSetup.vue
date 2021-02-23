@@ -195,12 +195,9 @@
         <validation-provider
           v-slot="{ errors }"
           slim
-          :rules="
-            ({
-              regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
-            },
-            { required: true })
-          "
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)?linkedin.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+          }"
         >
           <v-text-field
             v-model="programDoc.data.adks[index].resourceLinkedIn"
