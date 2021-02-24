@@ -332,10 +332,10 @@
           <v-btn x-large depressed outlined :disabled="invalid" :loading="loading" @click="process"
             >Save</v-btn
           >
-          <v-alert v-if="success || error" :type="success ? 'success' : 'error'">{{
-            message
-          }}</v-alert>
         </div>
+        <v-alert v-if="success || error" :type="success ? 'success' : 'error'">{{
+          message
+        }}</v-alert>
       </div>
     </v-container>
   </ValidationObserver>
@@ -415,7 +415,7 @@ export default defineComponent({
       status,
       index,
       programDoc,
-      ...createLoader(programDoc.value.update, 'Saved', 'not saved')
+      ...createLoader(programDoc.value.update, 'Saved', 'Something went wrong, try again later')
     };
   }
 });
