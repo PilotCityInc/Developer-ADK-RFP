@@ -1,5 +1,5 @@
 <template>
-  <v-container class="module-default__container">
+  <div class="module-default">
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -404,7 +404,7 @@
         <v-btn x-large depressed outlined>Finish Activity</v-btn>
       </div>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -579,7 +579,8 @@ export default defineComponent({
   }
   &__collapse-divider {
     margin-top: 15px;
-    margin-bottom: 75px;
+    // margin-bottom: 75px;
+    margin-bottom: none !important;
     margin-right: none;
     margin-left: none;
     padding-right: none;
@@ -656,7 +657,7 @@ export default defineComponent({
   &__faq-question {
     // text-align: left;
     font-family: 'Raleway';
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: #404142;
   }

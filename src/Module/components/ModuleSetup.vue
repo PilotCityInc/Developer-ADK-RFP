@@ -250,23 +250,6 @@
           v-slot="{ errors }"
           slim
           :rules="{
-            regex: /^((?:https?:)?\/\/)?((?:www)\.)?((?:(.*)\.com))(.*)/
-          }"
-        >
-          <v-text-field
-            v-model="programDoc.data.adks[index].resourceDrive"
-            outlined
-            :error-messages="errors"
-            label="Get Started Folder"
-            placeholder="https://drive.google.com/foldername"
-            prepend-icon="mdi-folder-google-drive"
-            rounded
-          ></v-text-field>
-        </validation-provider>
-        <validation-provider
-          v-slot="{ errors }"
-          slim
-          :rules="{
             regex: /(?:http|https):\/\/(?:www.)?twitter.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
           }"
         >
@@ -277,6 +260,24 @@
             label="Twitter"
             placeholder="https://twitter.com/username"
             prepend-icon="mdi-twitter"
+            rounded
+          ></v-text-field>
+        </validation-provider>
+
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /^((?:https?:)?\/\/)?((?:www)\.)?((?:(.*)\.com))(.*)/
+          }"
+        >
+          <v-text-field
+            v-model="programDoc.data.adks[index].resourceDrive"
+            outlined
+            :error-messages="errors"
+            label="Get Started Folder"
+            placeholder="https://drive.google.com/foldername"
+            prepend-icon="mdi-folder-google-drive"
             rounded
           ></v-text-field>
         </validation-provider>
