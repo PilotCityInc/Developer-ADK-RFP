@@ -1,5 +1,5 @@
 <template>
-  <div class="module-default">
+  <v-container class="module-default__container">
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -54,7 +54,7 @@
           rounded
           outlined
           depressed
-          :href="programDoc.data.adks[index].rfp.resourceWeb"
+          :href="programDoc.data.adks[index].resourceWeb"
           target="_blank"
           >{{ sampleEmployerName }} {{ programDoc.data.programName
           }}<v-icon small right>mdi-open-in-new</v-icon>
@@ -115,7 +115,7 @@
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewProblem }}
-                    {{ programDoc.data.adks[index].rfp.interviewProblem }}
+                    {{ programDoc.data.adks[index].interviewProblem }}
                   </div></v-card-text
                 >
               </v-card>
@@ -138,7 +138,7 @@
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewSolution }}
-                    {{ programDoc.data.adks[index].rfp.interviewSolution }}
+                    {{ programDoc.data.adks[index].interviewSolution }}
                   </div></v-card-text
                 >
               </v-card>
@@ -159,7 +159,7 @@
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewOpportunity }}
-                    {{ programDoc.data.adks[index].rfp.interviewOpportunity }}
+                    {{ programDoc.data.adks[index].interviewOpportunity }}
                   </div></v-card-text
                 >
               </v-card>
@@ -180,7 +180,7 @@
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleInterviewChallenge }}
-                    {{ programDoc.data.adks[index].rfp.interviewChallenge }}
+                    {{ programDoc.data.adks[index].interviewChallenge }}
                   </div></v-card-text
                 >
               </v-card>
@@ -203,7 +203,7 @@
                 <v-card-text class="module-default__faq-answer"
                   ><div class="module-default__faq-answer">
                     {{ sampleIR }}
-                    {{ programDoc.data.adks[index].rfp.interviewRequest }}
+                    {{ programDoc.data.adks[index].interviewRequest }}
                   </div></v-card-text
                 >
               </v-card>
@@ -225,7 +225,7 @@
           <v-list two-line subheader>
             <v-list-item>
               <div
-                v-for="(outcome, itemIndex) in programDoc.data.adks[index].rfp.outcome"
+                v-for="(outcome, itemIndex) in programDoc.data.adks[index].outcome"
                 :key="itemIndex"
               >
                 <v-chip-group column>
@@ -239,7 +239,7 @@
           <v-list two-line subheader>
             <v-list-item>
               <div
-                v-for="(deliverable, itemIndex) in programDoc.data.adks[index].rfp.deliverable"
+                v-for="(deliverable, itemIndex) in programDoc.data.adks[index].deliverable"
                 :key="itemIndex"
               >
                 <v-chip-group>
@@ -251,7 +251,7 @@
           <!-- <v-divider></v-divider> -->
           <v-subheader class="font-weight-bold">Requirements</v-subheader>
           <v-list two-line subheader>
-            <v-list-item v-if="programDoc.data.adks[index].rfp.projectReq === ''">
+            <v-list-item v-if="programDoc.data.adks[index].projectReq === ''">
               <div>
                 <v-chip-group>
                   <v-chip>{{ sampleProjectReq }}</v-chip>
@@ -259,7 +259,7 @@
               </div>
             </v-list-item>
             <v-list-item
-              v-for="(requirements, itemIndex) in programDoc.data.adks[index].rfp.projectReq"
+              v-for="(requirements, itemIndex) in programDoc.data.adks[index].projectReq"
               :key="itemIndex"
             >
               <template v-slot:default="{ active }">
@@ -277,12 +277,13 @@
           <v-list two-line subheader>
             <v-list-item
               v-if="
-                programDoc.data.adks[index].rfp.resourceDrive === '' &&
-                programDoc.data.adks[index].rfp.resourceWeb === '' &&
-                programDoc.data.adks[index].rfp.resourceInsta === '' &&
-                programDoc.data.adks[index].rfp.resourceFacebook === '' &&
-                programDoc.data.adks[index].rfp.resourceYouTube === '' &&
-                programDoc.data.adks[index].rfp.resourceLinkedIn === ''
+                programDoc.data.adks[index].resourceDrive === '' &&
+                programDoc.data.adks[index].resourceWeb === '' &&
+                programDoc.data.adks[index].resourceInsta === '' &&
+                programDoc.data.adks[index].resourceFacebook === '' &&
+                programDoc.data.adks[index].resourceYouTube === '' &&
+                programDoc.data.adks[index].resourceLinkedIn === '' &&
+                programDoc.data.adks[index].resourceTwitter === ''
               "
             >
               <div>
@@ -294,65 +295,75 @@
             <v-list-item>
               <v-btn-group>
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceDrive != ''"
+                  v-if="programDoc.data.adks[index].resourceDrive != ''"
                   id="resourcebutton"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceDrive"
+                  :href="programDoc.data.adks[index].resourceDrive"
                   >Get Started Folder</v-btn
                 >
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceWeb != ''"
+                  v-if="programDoc.data.adks[index].resourceWeb != ''"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceWeb"
+                  :href="programDoc.data.adks[index].resourceWeb"
                   >Website</v-btn
                 >
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceInsta != ''"
+                  v-if="programDoc.data.adks[index].resourceInsta != ''"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceInsta"
+                  :href="programDoc.data.adks[index].resourceInsta"
                   >Instagram</v-btn
                 >
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceLinkedIn != ''"
+                  v-if="programDoc.data.adks[index].resourceLinkedIn != ''"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceLinkedIn"
+                  :href="programDoc.data.adks[index].resourceLinkedIn"
                   >LinkedIn</v-btn
                 >
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceFacebook != ''"
+                  v-if="programDoc.data.adks[index].resourceFacebook != ''"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceFacebook"
+                  :href="programDoc.data.adks[index].resourceFacebook"
                   >Facebook</v-btn
                 >
                 <v-btn
-                  v-if="programDoc.data.adks[index].rfp.resourceYouTube != ''"
+                  v-if="programDoc.data.adks[index].resourceYouTube != ''"
                   class="ma-1"
                   depressed
                   small
                   outlined
                   target="_blank"
-                  :href="programDoc.data.adks[index].rfp.resourceYouTube"
+                  :href="programDoc.data.adks[index].resourceYouTube"
                   >YouTube</v-btn
+                >
+                <v-btn
+                  v-if="programDoc.data.adks[index].resourceTwitter != ''"
+                  class="ma-1"
+                  depressed
+                  small
+                  outlined
+                  target="_blank"
+                  :href="programDoc.data.adks[index].resourceTwitter"
+                  >Twitter</v-btn
                 >
                 <!-- <v-btn class="ma-1" depressed small outlined>Articles</v-btn>
                 <v-btn class="ma-1" depressed small outlined>Product Specifications</v-btn>
@@ -365,7 +376,7 @@
 
           <v-card-text>
             {{ sampleaboutOrg }}
-            {{ programDoc.data.adks[index].rfp.aboutOrg }}</v-card-text
+            {{ programDoc.data.adks[index].aboutOrg }}</v-card-text
           >
         </v-card>
       </template>
@@ -393,7 +404,7 @@
         <v-btn x-large depressed outlined>Finish Activity</v-btn>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -412,7 +423,6 @@ export default defineComponent({
       type: Object as PropType<MongoDoc>
     }
   },
-
   setup(props, ctx) {
     const programDoc = computed({
       get: () => props.value,
@@ -424,6 +434,7 @@ export default defineComponent({
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
       return obj.name === 'rfp';
     });
+    console.log(programDoc.value.data.adks[index].interviewProblem);
 
     const initRfpSetup = {
       rfp: {
@@ -441,7 +452,8 @@ export default defineComponent({
         resourceFacebook: '',
         resourceYouTube: '',
         resourceDrive: '',
-        interviewProblem: 'Testing123456',
+        resourceTwitter: '',
+        interviewProblem: '',
         interviewSolution: '',
         interviewOpportunity: '',
         interviewChallenge: '',
@@ -449,11 +461,12 @@ export default defineComponent({
         required: false
       }
     };
-
     programDoc.value.data.adks[index] = {
       ...initRfpSetup,
       ...programDoc.value.data.adks[index]
     };
+
+    console.log(programDoc.value.data.adks[index].interviewProblem);
 
     let sampleEmployerName = ref('');
     const sampleProjectScope = ref('');
@@ -467,23 +480,22 @@ export default defineComponent({
     let sampleProjectReq = ref('');
     let sampleaboutOrg = ref('');
     let sampleResourceChip = ref('');
-
-    if (programDoc.value.data.adks[index].rfp.employerName === '') {
+    if (programDoc.value.data.adks[index].employerName === '') {
       sampleEmployerName = ref('Your employer name goes here');
     }
     // if (programDoc.programDesc === '') {
     //   sampleProjectScope = ref('Your employer is crafting their project scope');
     // }
-    if (programDoc.value.data.adks[index].rfp.interviewProblem === '') {
+    if (programDoc.value.data.adks[index].interviewProblem === '') {
       sampleInterviewProblem = ref('Awaiting an answer from your employer');
     }
-    if (programDoc.value.data.adks[index].rfp.interviewSolution === '') {
+    if (programDoc.value.data.adks[index].interviewSolution === '') {
       sampleInterviewSolution = ref('Awaiting an answer from your employer');
     }
-    if (programDoc.value.data.adks[index].rfp.interviewOpportunity === '') {
+    if (programDoc.value.data.adks[index].interviewOpportunity === '') {
       sampleInterviewOpportunity = ref('Awaiting an answer from your employer');
     }
-    if (programDoc.value.data.adks[index].rfp.interviewChallenge === '') {
+    if (programDoc.value.data.adks[index].interviewChallenge === '') {
       sampleInterviewChallenge = ref('Awaiting an answer from your employer');
       sampleIR = ref('Awaiting an answer from your employer');
     }
@@ -493,23 +505,23 @@ export default defineComponent({
     // if (programDoc.value.data.adks[index].rfp.deliverable === '') {
     //   sampleDeliverable = ref('SAMPLE OUTPUT 7');
     // }
-    if (programDoc.value.data.adks[index].rfp.projectReq === '') {
+    if (programDoc.value.data.adks[index].projectReq === '') {
       sampleProjectReq = ref('None');
     }
-    if (programDoc.value.data.adks[index].rfp.aboutOrg === '') {
+    if (programDoc.value.data.adks[index].aboutOrg === '') {
       sampleaboutOrg = ref('Awaiting a blurb about your employer');
     }
     if (
-      programDoc.value.data.adks[index].rfp.resourceDrive === '' &&
-      programDoc.value.data.adks[index].rfp.resourceWeb === '' &&
-      programDoc.value.data.adks[index].rfp.resourceInsta === '' &&
-      programDoc.value.data.adks[index].rfp.resourceFacebook === '' &&
-      programDoc.value.data.adks[index].rfp.resourceYouTube === '' &&
-      programDoc.value.data.adks[index].rfp.resourceLinkedIn === ''
+      programDoc.value.data.adks[index].resourceDrive === '' &&
+      programDoc.value.data.adks[index].resourceWeb === '' &&
+      programDoc.value.data.adks[index].resourceInsta === '' &&
+      programDoc.value.data.adks[index].resourceFacebook === '' &&
+      programDoc.value.data.adks[index].resourceYouTube === '' &&
+      programDoc.value.data.adks[index].resourceLinkedIn === ''
     ) {
       sampleResourceChip = ref('None');
     }
-
+    console.log(programDoc.value.data.adks[index].interviewProblem);
     return {
       index,
       programDoc,
@@ -529,7 +541,6 @@ export default defineComponent({
       // setup
     };
   },
-
   data() {
     return {
       showInstructions: 'true'
@@ -566,18 +577,15 @@ export default defineComponent({
     font-size: 18px;
     padding-top: 35px;
   }
-
   &__collapse-divider {
     margin-top: 15px;
-    // margin-bottom: 75px;
-    margin-bottom: none !important;
+    margin-bottom: 75px;
     margin-right: none;
     margin-left: none;
     padding-right: none;
     padding-left: none;
     width: 100%;
   }
-
   &__collapse-title {
     color: #dedede;
     text-align: center;
@@ -587,7 +595,6 @@ export default defineComponent({
     font-size: 13px;
     //  text-uppercase font-weight-bold text-subtitle-2 text-center
   }
-
   &__container {
     // width: 100%;
     // padding: none;
@@ -599,7 +606,6 @@ export default defineComponent({
     font-size: 25px;
     font-weight: 700;
   }
-
   &__scope {
     font-size: 22px;
     font-weight: 800;
@@ -613,7 +619,6 @@ export default defineComponent({
     border-radius: 25px;
     // margin: 0px;
     background-color: #dedede;
-
     // text-align: center;
     // justify-content: center;
     // align-items: center;
@@ -628,7 +633,6 @@ export default defineComponent({
     margin: auto;
     line-height: 30px;
   }
-
   &__faq {
     font-size: 15px;
     font-weight: 700;
@@ -637,7 +641,6 @@ export default defineComponent({
     margin: auto;
     line-height: 30px;
   }
-
   &__faq-chat {
     display: flex;
     flex-direction: column;
@@ -647,11 +650,9 @@ export default defineComponent({
   &__faq-chat-line {
     margin: 5px;
   }
-
   &__faq-avatar {
     margin: 5px;
   }
-
   &__faq-question {
     // text-align: left;
     font-family: 'Raleway';
@@ -659,7 +660,6 @@ export default defineComponent({
     font-weight: 700;
     color: #404142;
   }
-
   &__faq-answer {
     text-align: left;
     font-family: 'Raleway';
@@ -669,7 +669,6 @@ export default defineComponent({
     color: white;
     font-style: italic;
   }
-
   &__faq-answer-dark {
     text-align: left;
     font-family: 'Raleway';
@@ -679,7 +678,6 @@ export default defineComponent({
     color: #404142;
     font-style: italic;
   }
-
   &__faq-answer-dark-highlight {
     text-align: left;
     font-family: 'Raleway';
@@ -688,7 +686,6 @@ export default defineComponent({
     letter-spacing: 0px;
     color: #404142;
   }
-
   &__specs-title {
     font-weight: 800;
   }

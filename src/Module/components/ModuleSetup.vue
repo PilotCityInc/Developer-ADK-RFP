@@ -263,6 +263,23 @@
             rounded
           ></v-text-field>
         </validation-provider>
+        <validation-provider
+          v-slot="{ errors }"
+          slim
+          :rules="{
+            regex: /(?:http|https):\/\/(?:www.)?twitter.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+          }"
+        >
+          <v-text-field
+            v-model="programDoc.data.adks[index].resourceTwitter"
+            outlined
+            :error-messages="errors"
+            label="Twitter"
+            placeholder="https://twitter.com/username"
+            prepend-icon="mdi-twitter"
+            rounded
+          ></v-text-field>
+        </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
         <div class="headline font-weight-bold text-center mb-10">Key Questions</div>
@@ -329,7 +346,13 @@
         </validation-provider>
 
         <div class="module-default__scope mt-12">
-          <v-btn x-large depressed outlined :disabled="invalid" :loading="loading" @click="process"
+          <v-btn
+            x-large
+            depressed
+            outlined
+            :disabled="invalid"
+            :loading="loading"
+            @click="process()"
             >Save</v-btn
           >
         </div>
@@ -387,6 +410,7 @@ export default defineComponent({
       resourceLinkedIn: '',
       resourceFacebook: '',
       resourceYouTube: '',
+      resourceTwitter: '',
       resourceDrive: '',
       interviewProblem: '',
       interviewSolution: '',
@@ -401,7 +425,7 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    const status = ref('');
+    // const status = ref('');
     const setup = reactive({
       outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
       // outcomesValue,
@@ -410,9 +434,10 @@ export default defineComponent({
       chips,
       items
     });
+
     return {
       ...toRefs(setup),
-      status,
+      // status,
       index,
       programDoc,
       ...createLoader(programDoc.value.update, 'Saved', 'Something went wrong, try again later')
