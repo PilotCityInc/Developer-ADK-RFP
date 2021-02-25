@@ -111,36 +111,7 @@
 
         <v-divider class="presets__divider"></v-divider>
         <div class="headline font-weight-bold text-center mb-10">Select Specifications</div>
-        <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-select
-            v-model="programDoc.data.adks[index].outcome"
-            :error-messages="errors"
-            :items="outcomes"
-            chips
-            label="Outcomes"
-            multiple
-            outlined
-            rounded
-            readonly
-          ></v-select>
-        </validation-provider>
-        <div class="module-setup__buildscope">
-          <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
-          <!-- <v-btn depressed outlined disabled x-small>Connected with activities</v-btn> -->
-        </div>
-        <validation-provider v-slot="{ errors }" slim rules="required">
-          <v-select
-            v-model="programDoc.data.adks[index].deliverable"
-            :items="deliverables"
-            :error-messages="errors"
-            chips
-            readonly
-            label="Deliverables"
-            multiple
-            outlined
-            rounded
-          ></v-select>
-        </validation-provider>
+
         <template>
           <validation-provider v-slot="{ errors }" slim>
             <v-select
@@ -170,6 +141,37 @@
             </v-select>
           </validation-provider>
         </template>
+
+        <validation-provider v-slot="{ errors }" slim rules="required">
+          <v-select
+            v-model="programDoc.data.adks[index].outcome"
+            :error-messages="errors"
+            :items="outcomes"
+            chips
+            label="Outcomes"
+            multiple
+            outlined
+            rounded
+            disabled
+          ></v-select>
+        </validation-provider>
+        <div class="module-setup__buildscope">
+          <!-- INSERT V-DIALOG HERE TO OPEN UP PROMPT BUILDER WE BUILT LAST YEAR FOR TEACHERS -->
+          <!-- <v-btn depressed outlined disabled x-small>Connected with activities</v-btn> -->
+        </div>
+        <validation-provider v-slot="{ errors }" slim rules="required">
+          <v-select
+            v-model="programDoc.data.adks[index].deliverable"
+            :items="deliverables"
+            :error-messages="errors"
+            chips
+            disabled
+            label="Deliverables"
+            multiple
+            outlined
+            rounded
+          ></v-select>
+        </validation-provider>
 
         <v-divider class="presets__divider"></v-divider>
         <div class="headline font-weight-bold text-center mb-10">Provide Links</div>
