@@ -369,8 +369,8 @@
 
 <script lang="ts">
 /* eslint-disable no-unused-expressions */
-import { reactive, toRefs, PropType, computed, defineComponent, ref } from '@vue/composition-api';
-import { createLoader } from 'pcv4lib/src';
+import { reactive, toRefs, PropType, computed, defineComponent } from '@vue/composition-api';
+import { loading } from 'pcv4lib/src';
 import { ValidationObserver, ValidationProvider } from '@/validation';
 import { deliverablesValue, chips, items } from './const';
 import MongoDoc from '../types';
@@ -443,7 +443,7 @@ export default defineComponent({
       // status,
       index,
       programDoc,
-      ...createLoader(programDoc.value.update, 'Saved', 'Something went wrong, try again later')
+      ...loading(programDoc.value.update, 'Saved', 'Something went wrong, try again later')
     };
   }
 });
