@@ -148,7 +148,7 @@
             :error-messages="errors"
             :items="outcomes"
             chips
-            label="Outcomes"
+            label="Preset Outcomes"
             multiple
             outlined
             rounded
@@ -166,7 +166,7 @@
             :error-messages="errors"
             chips
             disabled
-            label="Deliverables"
+            label="Preset Deliverables"
             multiple
             outlined
             rounded
@@ -405,8 +405,8 @@ export default defineComponent({
       projectScope: '',
       introVideo: '',
       aboutOrg: '',
-      outcome: ['Build portfolio project', 'Qualify for internship to execute on project'],
-      deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
+      outcome: ['Build portfolio project', 'Qualify to win work experiences to execute on project'],
+      deliverable: ['Ideate', 'Pitch', 'Make', 'Demonstration'],
       projectReq: '',
       resourceWeb: '',
       resourceInsta: '',
@@ -430,9 +430,12 @@ export default defineComponent({
 
     // const status = ref('');
     const setup = reactive({
-      outcomes: ['Build portfolio project', 'Qualify for internship to execute on project'],
+      outcomes: [
+        'Build portfolio project',
+        'Qualify to win work experiences to execute on project'
+      ],
       // outcomesValue,
-      deliverables: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
+      deliverables: ['Ideate', 'Pitch', 'Make', 'Demonstration'],
       deliverablesValue,
       chips,
       items
