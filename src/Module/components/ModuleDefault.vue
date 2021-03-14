@@ -1,5 +1,5 @@
 <template>
-  <div class="module-default">
+  <v-container class="module-default pa-0">
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -404,7 +404,7 @@
         <v-btn x-large depressed outlined>Finish Activity</v-btn>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
