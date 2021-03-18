@@ -77,13 +77,6 @@
         <template>
           <v-timeline>
             <v-timeline-item v-for="n in 1" :key="n" color="grey" fill-dot left small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <v-card outlined color="grey lighten-3" class="elevation-0">
                 <v-card-text class="faq-answer"
                   ><div class="faq-answer-dark">
@@ -99,13 +92,6 @@
             </v-timeline-item>
 
             <v-timeline-item v-for="n in 1" :key="n" color="red" fill-dot right small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <template v-slot:opposite>
                 <span class="faq-question">What is the urgency of this problem?</span>
               </template>
@@ -120,13 +106,6 @@
             </v-timeline-item>
 
             <v-timeline-item v-for="n in 1" :key="n" right color="green" fill-dot small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <template v-slot:opposite>
                 <span class="faq-question"
                   >Who could be possible users of the solution created?</span
@@ -143,13 +122,6 @@
             </v-timeline-item>
 
             <v-timeline-item v-for="n in 1" :key="n" right color="purple" fill-dot small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <template v-slot:opposite>
                 <span class="faq-question">What are the opportunities?</span>
               </template>
@@ -164,13 +136,6 @@
             </v-timeline-item>
 
             <v-timeline-item v-for="n in 1" :key="n" right color="pink" fill-dot small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <template v-slot:opposite>
                 <span class="faq-question">What are the known challenges?</span>
               </template>
@@ -185,13 +150,6 @@
             </v-timeline-item>
 
             <v-timeline-item v-for="n in 1" :key="n" right color="blue" fill-dot small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
               <template v-slot:opposite>
                 <span class="faq-question">Why are you requesting projects from students?</span>
               </template>
