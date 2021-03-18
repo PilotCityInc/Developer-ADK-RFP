@@ -46,7 +46,7 @@
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
       <!-- <div class="module-default__none">Design your activity here</div> -->
-      <div class="module-default__scope mt-8">
+      <div class="module-default__scope mt-12">
         <v-btn
           dense
           color="blue"
@@ -69,7 +69,7 @@
       <!-- <div class="module-default__youtube"></div> -->
       <br />
       <br />
-      <div class="module-default__faq">
+      <div class="faq">
         <v-btn color="white" disabled large rounded depressed>FREQUENTLY ASKED QUESTIONS</v-btn>
         <br />
         <br />
@@ -85,12 +85,12 @@
                 </v-avatar>
               </template>
               <v-card outlined color="grey lighten-3" class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer-dark">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer-dark">
                     <!-- Hi, I'm with -->
-                    <span class="module-default__faq-answer-dark-highlight"></span>
+                    <span class="faq-answer-dark-highlight"></span>
 
-                    <span class="module-default__faq-answer-dark-highlight">
+                    <span class="faq-answer-dark-highlight">
                       <!-- programDoc.data.adks[index].rfp.employerName --> </span
                     >Below are answers to some key questions from the employer
                   </div></v-card-text
@@ -107,13 +107,11 @@
                 </v-avatar>
               </template>
               <template v-slot:opposite>
-                <span class="module-default__faq-question"
-                  >What is the urgency of this problem?</span
-                >
+                <span class="faq-question">What is the urgency of this problem?</span>
               </template>
               <v-card color="red" dark outlined class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer">
                     {{ sampleInterviewProblem }}
                     {{ programDoc.data.adks[index].interviewProblem }}
                   </div></v-card-text
@@ -130,13 +128,13 @@
                 </v-avatar>
               </template>
               <template v-slot:opposite>
-                <span class="module-default__faq-question"
+                <span class="faq-question"
                   >Who could be possible users of the solution created?</span
                 >
               </template>
               <v-card color="green" dark outlined class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer">
                     {{ sampleInterviewSolution }}
                     {{ programDoc.data.adks[index].interviewSolution }}
                   </div></v-card-text
@@ -153,34 +151,13 @@
                 </v-avatar>
               </template>
               <template v-slot:opposite>
-                <span class="module-default__faq-question">What are the opportunities?</span>
+                <span class="faq-question">What are the opportunities?</span>
               </template>
               <v-card color="purple" dark outlined class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer">
                     {{ sampleInterviewOpportunity }}
                     {{ programDoc.data.adks[index].interviewOpportunity }}
-                  </div></v-card-text
-                >
-              </v-card>
-            </v-timeline-item>
-
-            <v-timeline-item v-for="n in 1" :key="n" right color="blue" fill-dot small>
-              <template v-slot:icon>
-                <v-avatar>
-                  <!-- <img
-                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                  /> -->
-                </v-avatar>
-              </template>
-              <template v-slot:opposite>
-                <span class="module-default__faq-question">What are the known challenges?</span>
-              </template>
-              <v-card color="blue" dark outlined class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer">
-                    {{ sampleInterviewChallenge }}
-                    {{ programDoc.data.adks[index].interviewChallenge }}
                   </div></v-card-text
                 >
               </v-card>
@@ -195,13 +172,32 @@
                 </v-avatar>
               </template>
               <template v-slot:opposite>
-                <span class="module-default__faq-question"
-                  >Why are you requesting projects from students?</span
-                >
+                <span class="faq-question">What are the known challenges?</span>
               </template>
               <v-card color="pink" dark outlined class="elevation-0">
-                <v-card-text class="module-default__faq-answer"
-                  ><div class="module-default__faq-answer">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer">
+                    {{ sampleInterviewChallenge }}
+                    {{ programDoc.data.adks[index].interviewChallenge }}
+                  </div></v-card-text
+                >
+              </v-card>
+            </v-timeline-item>
+
+            <v-timeline-item v-for="n in 1" :key="n" right color="blue" fill-dot small>
+              <template v-slot:icon>
+                <v-avatar>
+                  <!-- <img
+                    src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
+                  /> -->
+                </v-avatar>
+              </template>
+              <template v-slot:opposite>
+                <span class="faq-question">Why are you requesting projects from students?</span>
+              </template>
+              <v-card color="blue" dark outlined class="elevation-0">
+                <v-card-text class="faq-answer"
+                  ><div class="faq-answer">
                     {{ sampleIR }}
                     {{ programDoc.data.adks[index].interviewRequest }}
                   </div></v-card-text
@@ -215,7 +211,7 @@
       <br />
       <template>
         <v-card tile outlined elevation="0" max-width="" class="mx-auto">
-          <v-toolbar elevation="0" dark color="grey lighten-1">
+          <v-toolbar elevation="0" dark color="blue">
             <v-icon class="mr-4" large>mdi-clipboard-list</v-icon>
             <v-toolbar-title class="module-default__specs-title"
               >Project Specifications</v-toolbar-title
@@ -262,9 +258,9 @@
               v-for="(requirements, itemIndex) in programDoc.data.adks[index].projectReq"
               :key="itemIndex"
             >
-              <template v-slot:default="{ active }">
+              <template v-slot:default="{}">
                 <v-list-item-action>
-                  <v-checkbox :input-value="active" color="primary"></v-checkbox>
+                  <v-checkbox input-value="true" disabled color="primary"></v-checkbox>
                 </v-list-item-action>
                 <v-list-item-content>
                   <v-list-item-title>{{ requirements }} </v-list-item-title>
@@ -371,13 +367,13 @@
               </v-btn-group>
             </v-list-item>
           </v-list>
-          <v-divider></v-divider>
           <v-subheader class="font-weight-bold">About</v-subheader>
-
-          <v-card-text>
-            {{ sampleaboutOrg }}
-            {{ programDoc.data.adks[index].aboutOrg }}</v-card-text
-          >
+          <v-list two-line subheader>
+            <v-card-text class="module-default__about-text">
+              {{ sampleaboutOrg }}
+              {{ programDoc.data.adks[index].aboutOrg }}</v-card-text
+            >
+          </v-list>
         </v-card>
       </template>
       <br />
@@ -401,7 +397,7 @@
       <br />
       <br />
       <div class="module-default__scope">
-        <v-btn x-large depressed outlined>Finish Activity</v-btn>
+        <v-btn x-large depressed outlined>Finish Reviewing</v-btn>
       </div>
     </div>
   </v-container>
@@ -561,11 +557,71 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.faq {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  max-width: 90%;
+  margin: auto;
+  line-height: 30px;
+}
+.faq-chat {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 5%;
+}
+.faq-chat-line {
+  margin: 5px;
+}
+.faq-avatar {
+  margin: 5px;
+}
+.faq-question {
+  // text-align: left;
+  font-family: 'Raleway';
+  font-size: 13px;
+  font-weight: 700;
+  color: #404142;
+}
+.faq-answer {
+  text-align: left;
+  font-family: 'Raleway';
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: white;
+  font-style: italic;
+}
+.faq-answer-dark {
+  text-align: left;
+  font-family: 'Raleway';
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: #404142;
+  font-style: italic;
+}
+.faq-answer-dark-highlight {
+  text-align: left;
+  font-family: 'Raleway';
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0px;
+  color: #404142;
+}
+
 .v-timeline-item__divider {
   margin-top: auto;
   margin-bottom: auto;
 }
 .module-default {
+  &__about-text {
+    font-family: 'Raleway';
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
   &__none {
     border-radius: 5px;
     // border: 1px solid #dedede;
@@ -634,59 +690,7 @@ export default defineComponent({
     margin: auto;
     line-height: 30px;
   }
-  &__faq {
-    font-size: 15px;
-    font-weight: 700;
-    text-align: center;
-    max-width: 90%;
-    margin: auto;
-    line-height: 30px;
-  }
-  &__faq-chat {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 5%;
-  }
-  &__faq-chat-line {
-    margin: 5px;
-  }
-  &__faq-avatar {
-    margin: 5px;
-  }
-  &__faq-question {
-    // text-align: left;
-    font-family: 'Raleway';
-    font-size: 13px;
-    font-weight: 700;
-    color: #404142;
-  }
-  &__faq-answer {
-    text-align: left;
-    font-family: 'Raleway';
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0px;
-    color: white;
-    font-style: italic;
-  }
-  &__faq-answer-dark {
-    text-align: left;
-    font-family: 'Raleway';
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0px;
-    color: #404142;
-    font-style: italic;
-  }
-  &__faq-answer-dark-highlight {
-    text-align: left;
-    font-family: 'Raleway';
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0px;
-    color: #404142;
-  }
+
   &__specs-title {
     font-weight: 800;
   }
