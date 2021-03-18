@@ -570,8 +570,8 @@ export default defineComponent({
 }
 
 .v-timeline-item__divider {
-  // margin-top: auto;
-  // margin-bottom: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .module-default {
   &__about-text {
