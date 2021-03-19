@@ -355,7 +355,9 @@
       <br />
       <br />
       <div class="module-default__scope">
-        <v-btn x-large depressed outlined :loading="loading" @click="process()">Finish Reviewing</v-btn>
+        <v-btn x-large depressed outlined :loading="loading" @click="process()"
+          >Finish Reviewing</v-btn
+        >
         <v-alert v-if="success || error" class="mt-3" :type="success ? 'success' : 'error'">{{
           message
         }}</v-alert>
@@ -366,9 +368,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed, ref } from '@vue/composition-api';
+import { loading } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
-import { loading } from 'pcv4lib/src';
 
 export default defineComponent({
   name: 'ModuleDefault',
@@ -497,8 +499,8 @@ export default defineComponent({
       sampleaboutOrg,
       sampleResourceChip,
       ...loading(
-        () => programDoc.value.update(
-          () => ({
+        () =>
+          programDoc.value.update(() => ({
             isComplete: true,
             adkIndex: index
           })),
