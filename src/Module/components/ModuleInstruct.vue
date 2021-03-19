@@ -10,10 +10,10 @@
 
           <v-textarea
             v-model="goal"
-            row-height="3"
             rows="3"
             outlined
-            class="font-weight-bold text-body-1"
+            class=""
+            rounded
             hide-details
             dense
             auto-grow
@@ -23,6 +23,30 @@
         <div class="module-instruct__instructions">
           <div class="module-instruct__description-label">
             <span>Instructions</span>
+
+            <v-dialog v-model="tutorialDialog" width="516">
+              <template #activator="{ on, attrs }">
+                <v-btn v-bind="attrs" icon v-on="on"
+                  ><v-icon color="grey">mdi-youtube</v-icon></v-btn
+                >
+              </template>
+              <v-card dark class="login__dialog">
+                <div>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/3W3xStwJpKk"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </v-card>
+            </v-dialog>
+
+            <a href="https://discord.gg/pDVZMfKBmz" target="_blank" style="text-decoration: none">
+              <v-btn icon><v-icon color="grey">mdi-face-agent</v-icon></v-btn></a
+            >
           </div>
           <div
             v-for="(i, index) in boilerInstructions"
@@ -32,7 +56,7 @@
             <v-avatar
               size="35"
               color="white"
-              class="module-instruct__instructions-av font-weight-bold text-caption d-none d-sm-flex"
+              class="module-instruct__instructions-av font-weight-bold"
             >
               {{ index + 1 }}
             </v-avatar>
@@ -40,13 +64,13 @@
             <validation-provider v-slot="{ errors }" slim rules="required">
               <v-textarea
                 v-model="boilerInstructions[index]"
-                row-height="3"
                 rows="1"
                 outlined
                 hide-details
                 dense
+                rounded
                 :error-messages="errors"
-                class="font-weight-bold text-body-1"
+                class=""
                 auto-grow
                 disabled
               ></v-textarea>
@@ -76,6 +100,7 @@ import { ref, defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
   name: 'ModuleInstruct',
+  tutorialDialog: false,
 
   setup() {
     // const programDoc = computed({
@@ -111,6 +136,6 @@ export default defineComponent({
 
 <style lang="scss">
 .module-instruct__instructions-av {
-  margin-right: 3%;
+  margin-right: 2%;
 }
 </style>
