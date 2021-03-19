@@ -6,6 +6,33 @@
         <div class="module-instruct__description">
           <div class="module-instruct__description-label">
             <span>Goal</span>
+            <v-dialog v-model="tutorialDialog" width="516">
+              <template #activator>
+                <v-tooltip right>
+                  <template #activator="{ on, attrs }">
+                    <v-btn v-bind="attrs" icon v-on="on"
+                      ><v-icon color="grey darken-2" @click="tutorialDialog = true"
+                        >mdi-youtube</v-icon
+                      ></v-btn
+                    >
+                  </template>
+                  <span>Watch video overview</span>
+                </v-tooltip>
+              </template>
+
+              <v-card dark class="login__dialog">
+                <div>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/HnEdGFhizHg"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </v-card>
+            </v-dialog>
           </div>
 
           <v-textarea
@@ -24,29 +51,20 @@
           <div class="module-instruct__description-label">
             <span>Instructions</span>
 
-            <v-dialog v-model="tutorialDialog" width="516">
+            <v-tooltip right>
               <template #activator="{ on, attrs }">
-                <v-btn v-bind="attrs" icon v-on="on"
-                  ><v-icon color="grey">mdi-youtube</v-icon></v-btn
+                <a
+                  href="https://discord.gg/pDVZMfKBmz"
+                  target="_blank"
+                  style="text-decoration: none"
+                >
+                  <v-btn v-bind="attrs" icon v-on="on"
+                    ><v-icon color="grey darken-2">mdi-face-agent</v-icon></v-btn
+                  ></a
                 >
               </template>
-              <v-card dark class="login__dialog">
-                <div>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/3W3xStwJpKk"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </v-card>
-            </v-dialog>
-
-            <a href="https://discord.gg/pDVZMfKBmz" target="_blank" style="text-decoration: none">
-              <v-btn icon><v-icon color="grey">mdi-face-agent</v-icon></v-btn></a
-            >
+              <span>Ask questions & get advice</span>
+            </v-tooltip>
           </div>
           <div
             v-for="(i, index) in boilerInstructions"
@@ -100,7 +118,6 @@ import { ref, defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
   name: 'ModuleInstruct',
-  tutorialDialog: false,
 
   setup() {
     // const programDoc = computed({
@@ -121,7 +138,7 @@ export default defineComponent({
     //   boilerInstructions.value.push('');
     // }
 
-    return { boilerInstructions, goal };
+    return { boilerInstructions, tutorialDialog: false, goal };
   }
   // setup() {
   //   const demoInstructions = ref(['']);
