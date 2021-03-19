@@ -23,8 +23,8 @@
               <v-card dark class="login__dialog">
                 <div>
                   <iframe
-                    width="560"
-                    height="315"
+                    width="100%"
+                    height="400"
                     src="https://www.youtube.com/embed/HnEdGFhizHg"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -153,6 +153,6 @@ export default defineComponent({
 
 <style lang="scss">
 .module-instruct__instructions-av {
-  margin-right: 2%;
+  margin-right: 3%;
 }
 </style>
