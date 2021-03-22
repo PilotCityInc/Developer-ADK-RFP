@@ -374,7 +374,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed, ref } from '@vue/composition-api';
-import { loading, loading } from 'pcv4lib/src';
+import { loading } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
 
@@ -394,6 +394,10 @@ export default defineComponent({
       // participant: '',
       // organizer: '',
       // stakeholder: ''
+    },
+    studentDoc: {
+      required: true,
+      type: Object as () => MongoDoc
     }
   },
   setup(props, ctx) {
@@ -407,7 +411,6 @@ export default defineComponent({
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
       return obj.name === 'rfp';
     });
-    console.log(programDoc.value.data.adks[index].interviewProblem);
 
     const initRfpSetup = {
       rfp: {
@@ -439,7 +442,21 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    console.log(programDoc.value.data.adks[index].interviewProblem);
+    const studentDocument = computed({
+      get: () => props.studentDoc,
+      set: newVal => {
+        ctx.emit('inputStudentDoc', newVal);
+      }
+    });
+    let studIndex = studentDocument.value.data.adks.findIndex(function findRfpObj(obj) {
+      return obj.name === 'rfp';
+    });
+    if (studIndex === -1) {
+      studIndex = studentDocument.value.data.adks.length;
+      studentDocument.value.data.adks.push({
+        name: 'rfp'
+      });
+    }
 
     let sampleEmployerName = ref('');
     const sampleProjectScope = ref('');
@@ -494,7 +511,6 @@ export default defineComponent({
     ) {
       sampleResourceChip = ref('None');
     }
-    console.log(programDoc.value.data.adks[index].interviewProblem);
     return {
       index,
       programDoc,
@@ -513,10 +529,13 @@ export default defineComponent({
       sampleResourceChip,
       ...loading(
         () =>
-          programDoc.value.update(() => ({
-            isComplete: true,
-            adkIndex: index
-          })),
+          studentDocument.value.update(() => {
+            console.log(studIndex);
+            return {
+              isComplete: true,
+              adkIndex: studIndex
+            };
+          }),
         'Saved',
         'Something went wrong, try again later'
       )
