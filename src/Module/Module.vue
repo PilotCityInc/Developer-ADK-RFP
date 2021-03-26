@@ -65,7 +65,7 @@
         </v-card>
       </v-menu> -->
     </div>
-    <div class="module__container" :style="{ 'border-color': getColor }">
+    <div class="module__container pb-0 mb-0" :style="{ 'border-color': getColor }">
       <div class="module__title">
         <div class="module__image rounded-circle">
           <v-icon light x-large :color="selectedColor">mdi-book-open</v-icon>
@@ -110,6 +110,79 @@
         </div>
       </div>
     </div>
+
+    <!-- TIMELINE START -->
+
+    <!-- <template>
+      <v-container v-if="currentPage == 'preview'" style="max-width: 725px">
+        <v-btn
+          rounded
+          v-bind="attrs"
+          small
+          class="font-weight-bold"
+          :color="selectedColor"
+          dark
+          depressed
+          v-on="on"
+          ><v-icon left>mdi-message-reply-text</v-icon>Feedback</v-btn
+        >
+        <v-timeline dense clipped>
+          <v-timeline-item fill-dot class="white--text mb-12" :color="selectedColor" large>
+            <template v-slot:icon>
+              <v-avatar><img src="https://picsum.photos/510/300?random" /></v-avatar>
+            </template>
+            <v-text-field
+              v-model="input"
+              hide-details
+              flat
+              label="Leave a comment..."
+              solo
+              @keydown.enter="comment"
+            >
+              <template v-slot:append>
+                <v-btn rounded class="mx-0" outlined depressed @click="comment"> Post </v-btn>
+              </template>
+            </v-text-field>
+          </v-timeline-item>
+
+          <v-slide-x-transition group>
+            <v-timeline-item
+              v-for="event in timeline"
+              :key="event.id"
+              class="justify-center align-center"
+              :color="selectedColor"
+              fill-dot
+            >
+              <template v-slot:icon>
+                <v-tooltip left>
+                  <template #activator="{ on, attrs }">
+                    <v-avatar v-bind="attrs" icon size="34" v-on="on"
+                      ><img src="https://picsum.photos/510/300?random"
+                    /></v-avatar>
+                  </template>
+                  <span>Full name goes here</span>
+                </v-tooltip>
+              </template>
+              <v-row justify="space-between">
+                <v-col cols="7" v-text="event.text"></v-col>
+                <v-col class="text-right overline" cols="3" v-text="event.time"></v-col>
+                <v-col class="text-right overline" cols="2">
+                  <v-btn small class="module__trash" icon
+                    ><v-icon small color="grey" class="module__trash"
+                      >mdi-trash-can-outline</v-icon
+                    ></v-btn
+                  >
+                  <v-btn small class="module__trash" icon
+                    ><v-icon small color="grey" class="module__trash">mdi-flag</v-icon></v-btn
+                  ></v-col
+                >
+              </v-row>
+            </v-timeline-item>
+          </v-slide-x-transition>
+        </v-timeline>
+      </v-container>
+    </template> -->
+    <!-- TIMELINE END -->
   </v-container>
 </template>
 <style lang="scss">
