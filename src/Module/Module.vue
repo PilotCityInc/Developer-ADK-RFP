@@ -272,7 +272,7 @@ export default defineComponent({
     }
 
     // ENTER ACTIVITY NAME BELOW
-    const moduleName = ref('Request for Projects');
+    const moduleName = ref('Scope');
     const page = reactive({
       subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
