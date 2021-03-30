@@ -91,7 +91,15 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" color="red" fill-dot right small>
+            <v-timeline-item
+              v-for="n in 1"
+              :key="n"
+              class="align-center"
+              color="red"
+              fill-dot
+              right
+              small
+            >
               <template v-slot:opposite>
                 <span class="faq-question">What is the urgency of this problem?</span>
               </template>
@@ -105,7 +113,15 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="green" fill-dot small>
+            <v-timeline-item
+              v-for="n in 1"
+              :key="n"
+              class="align-center"
+              right
+              color="green"
+              fill-dot
+              small
+            >
               <template v-slot:opposite>
                 <span class="faq-question"
                   >Who could be possible users of the solution created?</span
@@ -121,7 +137,15 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="purple" fill-dot small>
+            <v-timeline-item
+              v-for="n in 1"
+              :key="n"
+              class="align-center"
+              right
+              color="purple"
+              fill-dot
+              small
+            >
               <template v-slot:opposite>
                 <span class="faq-question">What are the opportunities?</span>
               </template>
@@ -135,7 +159,15 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="pink" fill-dot small>
+            <v-timeline-item
+              v-for="n in 1"
+              :key="n"
+              class="align-center"
+              right
+              color="pink"
+              fill-dot
+              small
+            >
               <template v-slot:opposite>
                 <span class="faq-question">What are the known challenges?</span>
               </template>
@@ -149,7 +181,15 @@
               </v-card>
             </v-timeline-item>
 
-            <v-timeline-item v-for="n in 1" :key="n" right color="blue" fill-dot small>
+            <v-timeline-item
+              v-for="n in 1"
+              :key="n"
+              class="align-center"
+              right
+              color="blue"
+              fill-dot
+              small
+            >
               <template v-slot:opposite>
                 <span class="faq-question">Why are you requesting projects from students?</span>
               </template>
@@ -354,9 +394,16 @@
       <!-- <v-divider></v-divider> -->
       <br />
       <br />
+      <div class="d-flex justify-center">
+        <v-checkbox v-model="acknowledgeScope" single-line outlined full-width>
+          <template v-slot:label>
+            <div>I acknowledge I have reviewed the following project scope</div>
+          </template>
+        </v-checkbox>
+      </div>
       <div class="module-default__scope">
         <v-btn
-          :disabled="userType === 'stakeholder'"
+          :disabled="userType === 'stakeholder' || !acknowledgeScope"
           x-large
           depressed
           outlined
@@ -373,7 +420,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed, ref } from '@vue/composition-api';
+import { reactive, defineComponent, PropType, computed, ref, toRefs } from '@vue/composition-api';
 import { loading } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
@@ -408,19 +455,22 @@ export default defineComponent({
       }
     });
 
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
+      return obj.name === 'scope';
     });
 
-    const initRfpSetup = {
-      rfp: {
+    const initScopeSetup = {
+      scope: {
         employerName: '',
         employerWebsite: '',
         projectScope: '',
         introVideo: '',
         aboutOrg: '',
-        outcome: ['Qualify for internship to execute on project'],
-        deliverable: ['Ideate', 'Pitches', 'Design & Prototype', 'Demonstration', 'Presentation'],
+        outcome: [
+          'Build portfolio project',
+          'Qualify to win work experiences to execute on project'
+        ],
+        deliverable: ['Ideate', 'Pitch', 'Make', 'Demo'],
         projectReq: '',
         resourceWeb: '',
         resourceInsta: '',
@@ -438,9 +488,13 @@ export default defineComponent({
       }
     };
     programDoc.value.data.adks[index] = {
-      ...initRfpSetup,
+      ...initScopeSetup,
       ...programDoc.value.data.adks[index]
     };
+
+    const setup = reactive({
+      acknowledgeScope: false
+    });
 
     const studentDocument = computed({
       get: () => props.studentDoc,
@@ -448,13 +502,13 @@ export default defineComponent({
         ctx.emit('inputStudentDoc', newVal);
       }
     });
-    let studIndex = studentDocument.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+    let studIndex = studentDocument.value.data.adks.findIndex(function findScopeObj(obj) {
+      return obj.name === 'scope';
     });
     if (studIndex === -1) {
       studIndex = studentDocument.value.data.adks.length;
       studentDocument.value.data.adks.push({
-        name: 'rfp'
+        name: 'scope'
       });
     }
 
@@ -512,9 +566,10 @@ export default defineComponent({
       sampleResourceChip = ref('None');
     }
     return {
+      ...toRefs(setup),
       index,
       programDoc,
-      initRfpSetup,
+      initScopeSetup,
       sampleEmployerName,
       sampleProjectScope,
       sampleInterviewProblem,

@@ -396,11 +396,11 @@ export default defineComponent({
       }
     });
 
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
+      return obj.name === 'scope';
     });
 
-    const initRfpSetup = {
+    const initScopeSetup = {
       employerWebsite: '',
       projectScope: '',
       introVideo: '',
@@ -424,7 +424,7 @@ export default defineComponent({
     };
 
     programDoc.value.data.adks[index] = {
-      ...initRfpSetup,
+      ...initScopeSetup,
       ...programDoc.value.data.adks[index]
     };
 
@@ -435,7 +435,7 @@ export default defineComponent({
         'Qualify to win work experiences to execute on project'
       ],
       // outcomesValue,
-      deliverables: ['Ideate', 'Pitch', 'Make', 'Demonstration'],
+      deliverables: ['Ideate', 'Pitch', 'Make', 'Demo'],
       deliverablesValue,
       chips,
       items

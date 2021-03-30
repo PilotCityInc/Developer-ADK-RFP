@@ -261,18 +261,18 @@ export default defineComponent({
       }
     });
 
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
+      return obj.name === 'scope';
     });
     if (index === -1) {
-      const initRfp = {
-        name: 'rfp'
+      const initScope = {
+        name: 'scope'
       };
-      programDoc.value.data.adks.push(initRfp);
+      programDoc.value.data.adks.push(initScope);
     }
 
     // ENTER ACTIVITY NAME BELOW
-    const moduleName = ref('Request for Projects');
+    const moduleName = ref('Scope');
     const page = reactive({
       subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
