@@ -262,11 +262,11 @@ export default defineComponent({
     });
 
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+      return obj.name === 'scope';
     });
     if (index === -1) {
       const initRfp = {
-        name: 'rfp'
+        name: 'scope'
       };
       programDoc.value.data.adks.push(initRfp);
     }

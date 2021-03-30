@@ -409,11 +409,11 @@ export default defineComponent({
     });
 
     const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+      return obj.name === 'scope';
     });
 
     const initRfpSetup = {
-      rfp: {
+      scope: {
         employerName: '',
         employerWebsite: '',
         projectScope: '',
@@ -449,12 +449,12 @@ export default defineComponent({
       }
     });
     let studIndex = studentDocument.value.data.adks.findIndex(function findRfpObj(obj) {
-      return obj.name === 'rfp';
+      return obj.name === 'scope';
     });
     if (studIndex === -1) {
       studIndex = studentDocument.value.data.adks.length;
       studentDocument.value.data.adks.push({
-        name: 'rfp'
+        name: 'scope'
       });
     }
 
