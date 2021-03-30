@@ -261,14 +261,14 @@ export default defineComponent({
       }
     });
 
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
       return obj.name === 'scope';
     });
     if (index === -1) {
-      const initRfp = {
+      const initScope = {
         name: 'scope'
       };
-      programDoc.value.data.adks.push(initRfp);
+      programDoc.value.data.adks.push(initScope);
     }
 
     // ENTER ACTIVITY NAME BELOW

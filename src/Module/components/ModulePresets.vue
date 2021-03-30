@@ -128,11 +128,11 @@ export default defineComponent({
         ctx.emit('input', newVal);
       }
     });
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
       return obj.name === 'scope';
     });
 
-    const initRfpPresets = {
+    const initScopePresets = {
       defaultActivity: {
         groupActivity: 'Project',
         requiredActivity: 'Yes',
@@ -142,7 +142,7 @@ export default defineComponent({
       }
     };
     programDoc.value.data.adks[index] = {
-      ...initRfpPresets,
+      ...initScopePresets,
       ...programDoc.value.data.adks[index]
     };
 

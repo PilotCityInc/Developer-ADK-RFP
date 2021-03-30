@@ -408,11 +408,11 @@ export default defineComponent({
       }
     });
 
-    const index = programDoc.value.data.adks.findIndex(function findRfpObj(obj) {
+    const index = programDoc.value.data.adks.findIndex(function findScopeObj(obj) {
       return obj.name === 'scope';
     });
 
-    const initRfpSetup = {
+    const initScopeSetup = {
       scope: {
         employerName: '',
         employerWebsite: '',
@@ -438,7 +438,7 @@ export default defineComponent({
       }
     };
     programDoc.value.data.adks[index] = {
-      ...initRfpSetup,
+      ...initScopeSetup,
       ...programDoc.value.data.adks[index]
     };
 
@@ -448,7 +448,7 @@ export default defineComponent({
         ctx.emit('inputStudentDoc', newVal);
       }
     });
-    let studIndex = studentDocument.value.data.adks.findIndex(function findRfpObj(obj) {
+    let studIndex = studentDocument.value.data.adks.findIndex(function findScopeObj(obj) {
       return obj.name === 'scope';
     });
     if (studIndex === -1) {
@@ -514,7 +514,7 @@ export default defineComponent({
     return {
       index,
       programDoc,
-      initRfpSetup,
+      initScopeSetup,
       sampleEmployerName,
       sampleProjectScope,
       sampleInterviewProblem,
