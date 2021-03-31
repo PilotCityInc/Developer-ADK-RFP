@@ -46,7 +46,7 @@
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
       <!-- <div class="module-default__none">Design your activity here</div> -->
-      <div class="module-default__scope mt-12">
+      <div class="module-default__scope mt-12 pl-5 pr-5">
         <v-btn
           dense
           color="blue"
