@@ -395,7 +395,13 @@
       <br />
       <br />
       <div class="d-flex justify-center">
-        <v-checkbox v-model="acknowledgeScope" single-line outlined full-width>
+        <v-checkbox
+          v-model="adkData.acknowledgeScope"
+          single-line
+          outlined
+          full-width
+          @click="$emit('update')"
+        >
           <template v-slot:label>
             <div>I acknowledge I have reviewed the following project scope</div>
           </template>
@@ -403,7 +409,7 @@
       </div>
       <div class="module-default__scope">
         <v-btn
-          :disabled="userType === 'stakeholder' || !acknowledgeScope"
+          :disabled="userType === 'stakeholder' || !adkData.acknowledgeScope"
           x-large
           depressed
           outlined
@@ -421,7 +427,7 @@
 
 <script lang="ts">
 import { reactive, defineComponent, PropType, computed, ref, toRefs } from '@vue/composition-api';
-import { loading } from 'pcv4lib/src';
+import { getModAdk, loading } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
 import MongoDoc from '../types';
 
@@ -492,26 +498,16 @@ export default defineComponent({
       ...programDoc.value.data.adks[index]
     };
 
-    const setup = reactive({
-      acknowledgeScope: false
-    });
-
-    const studentDocument = computed({
-      get: () => props.studentDoc,
-      set: newVal => {
-        ctx.emit('inputStudentDoc', newVal);
-      }
-    });
-    let studIndex = studentDocument.value.data.adks.findIndex(function findScopeObj(obj) {
-      return obj.name === 'scope';
-    });
-    if (studIndex === -1) {
-      studIndex = studentDocument.value.data.adks.length;
-      studentDocument.value.data.adks.push({
-        name: 'scope'
-      });
-    }
-
+    const { adkData, adkIndex } = getModAdk(
+      props,
+      ctx.emit,
+      'scope',
+      {
+        acknowledgeScope: false
+      },
+      'studentDoc',
+      'inputStudentDoc'
+    );
     let sampleEmployerName = ref('');
     const sampleProjectScope = ref('');
     let sampleInterviewProblem = ref('');
@@ -565,9 +561,10 @@ export default defineComponent({
     ) {
       sampleResourceChip = ref('None');
     }
+    console.log('test');
     return {
-      ...toRefs(setup),
       index,
+      adkData,
       programDoc,
       initScopeSetup,
       sampleEmployerName,
@@ -584,11 +581,10 @@ export default defineComponent({
       sampleResourceChip,
       ...loading(
         () =>
-          studentDocument.value.update(() => {
-            console.log(studIndex);
+          props.studentDoc.update(() => {
             return {
               isComplete: true,
-              adkIndex: studIndex
+              adkIndex
             };
           }),
         'Saved',
