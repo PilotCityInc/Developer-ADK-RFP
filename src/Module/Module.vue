@@ -102,10 +102,12 @@
         <div class="module__page">
           <component
             :is="getComponent"
+            :key="key"
             v-model="programDoc"
             :user-type="userType"
-            :student-doc="studentDoc"
-            @inputStudentDoc="$emit('inputStudentDoc', $event)"
+            :student-doc="studentDoc || { data: { adks: [] }, update: () => {} }"
+            @inputStudentDoc="$emit(userType === 'participant' ? 'inputStudentDoc' : 'n', $event)"
+            @update="key++"
           />
         </div>
       </div>
@@ -329,6 +331,7 @@ export default defineComponent({
       });
       timelineData.input = '';
     }
+    const key = ref(1);
     return {
       ...toRefs(color),
       ...toRefs(page),
@@ -340,7 +343,8 @@ export default defineComponent({
       ...toRefs(timelineData),
       timeline,
       comment,
-      programDoc
+      programDoc,
+      key
     };
   }
 });
