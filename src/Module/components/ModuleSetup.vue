@@ -351,6 +351,7 @@
         <div class="module-default__scope mt-12">
           <v-btn
             x-large
+            rounded
             depressed
             outlined
             :disabled="invalid"

@@ -70,7 +70,9 @@
       <br />
       <br />
       <div class="faq">
-        <v-btn color="white" disabled large rounded depressed>FREQUENTLY ASKED QUESTIONS</v-btn>
+        <v-chip color="grey darken-1" outlined large rounded depressed
+          >Frequently Asked Questions</v-chip
+        >
         <br />
         <br />
 
@@ -407,15 +409,16 @@
           </template>
         </v-checkbox>
       </div>
-      <div class="module-default__scope">
+      <div class="module-default__scope mt-3">
         <v-btn
           :disabled="userType === 'stakeholder' || !adkData.acknowledgeScope"
           x-large
           depressed
           outlined
+          rounded
           :loading="loading"
           @click="process()"
-          >Finish Activity</v-btn
+          >Complete</v-btn
         >
         <v-alert v-if="success || error" class="mt-3" :type="success ? 'success' : 'error'">{{
           message
