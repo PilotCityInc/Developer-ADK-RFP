@@ -70,9 +70,7 @@
       <br />
       <br />
       <div class="faq">
-        <v-chip color="grey darken-1" outlined large rounded depressed
-          >Frequently Asked Questions</v-chip
-        >
+        <v-btn disabled large rounded depressed>Frequently Asked Questions</v-btn>
         <br />
         <br />
 
