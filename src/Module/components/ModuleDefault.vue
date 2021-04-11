@@ -412,7 +412,8 @@
           :disabled="userType === 'stakeholder' || !adkData.acknowledgeScope"
           x-large
           depressed
-          outlined
+          color="#3c9dcd"
+          class="white--text"
           rounded
           :loading="loading"
           @click="process()"
